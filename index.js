@@ -1,6 +1,7 @@
 var shell = require('shelljs');
 var express = require('express')
 var IRRecord = require('infrared').irrecord;
+var exec = require('child_process').exec;
 var app = express()
 
 app.get('/', function (req, res) {
@@ -16,10 +17,15 @@ app.get('/', function (req, res) {
   });
   //TODO Before running this command, lirc must be stopped with "sudo systemctl stop lirc"
   //TODO There should also be a way to name the remote control before starting so 'remote' below is replaced with a name variable.
-  if (exec('systemctl stop lirc').code !== 0) {
-    echo('Could not stop lirc');
-    exit(1);
-  }
+  exec('sudo systemctl stop lirc', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`exec error: ${error}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+  });
+
   irrecord.start('remote', {disable_namespace: true});
   irrecord.write('');
 })
