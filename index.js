@@ -16,7 +16,10 @@ app.get('/', function (req, res) {
   });
   //TODO Before running this command, lirc must be stopped with "sudo systemctl stop lirc"
   //TODO There should also be a way to name the remote control before starting so 'remote' below is replaced with a name variable.
-  shell.exec('sudo systemctl stop lirc');
+  if (exec('systemctl stop lirc').code !== 0) {
+    echo('Could not stop lirc');
+    exit(1);
+  }
   irrecord.start('remote', {disable_namespace: true});
   irrecord.write('');
 })
