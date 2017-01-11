@@ -2,7 +2,7 @@ var express = require('express')
 var IRRecord = require('infrared').irrecord;
 var app = express()
 
-app.get('/  ', function (req, res) {
+app.get('/', function (req, res) {
   var irrecord = new IRRecord({device: '/dev/lirc0'});
   irrecord.on('stdout', function(data) {
     console.log(data);
