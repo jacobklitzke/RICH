@@ -3,7 +3,7 @@ var IRRecord = require('infrared').irrecord;
 var exec = require('child_process').exec;
 var app = express()
 
-app.use(express.static('directives'))
+app.use(express.static('angular'))
 app.get('/addRemote', function (req, res) {
   require('./controllers/addRemote').get(req, res);
 })
