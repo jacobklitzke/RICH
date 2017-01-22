@@ -1,7 +1,6 @@
 <application>
   <component name="GithubSettings">
     <option name="LOGIN" value="mrshiz37" />
-    <option name="HOST" value="https://github.com/jacobklitzke/RICH.git" />
     <option name="AUTH_TYPE" value="BASIC" />
   </component>
 </application>
