@@ -9,6 +9,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0"
-  }
+    "express": "^4.14.0",
+    "infrared": "0.0.4"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobklitzke/RICH.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jacobklitzke/RICH/issues"
+  },
+  "homepage": "https://github.com/jacobklitzke/RICH#readme"
 }
