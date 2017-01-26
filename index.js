@@ -11,7 +11,9 @@ app.get('/addRemote', function (req, res) {
 app.get('/addRemoteBackend', function (req, res) {
   require('./backend_controllers/addRemoteBackend').get(req, res);
 });
-
+app.get ('/Home', function (req, res) {
+  require('./controllers/Home').get(req,res);
+});
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
