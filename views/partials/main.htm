@@ -1,0 +1,9 @@
+<p>
+  Please select a remote from the drop-down below:
+</p>
+<select ng-model="selectedFile" ng-options="file.fileName for file in files"></select>
+<h1>OR:</h1>
+<p>
+  Record a new remote:
+</p>
+<button ng-click="go('/recordRemote')">Record!</button>

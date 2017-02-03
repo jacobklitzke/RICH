@@ -1,0 +1,22 @@
+<div ng-controller="addRemoteCtrl">
+
+  <button class="btn btn-sm btn-primary" ng-click="updateHtml()" ng-show="buttonStep == 0">{{buttonState[0].state}}</button>
+  <button class="btn btn-sm btn-primary" ng-click="updateHtml()" ng-show="buttonStep == 1">{{buttonState[1].state}}</button>
+  <button class="btn btn-sm btn-primary" ng-click="updateHtml()" ng-show="buttonStep == 2">{{buttonState[2].state}}</button>
+  <button class="btn btn-sm btn-primary" ng-click="updateHtml()" ng-show="buttonStep == 3">{{buttonState[3].state}}</button>
+
+  <select class="form-control" ng-model="selectedValue" ng-show="buttonStep == 2">
+    <option ng-repeat="option in dropDown" value="{{option.value}}">{{option.option}}</option>
+  </select>
+
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Data Retrieved from Somewhere
+    </div>
+    <div class="panel-body">
+      <div class="well well-sm">Selected :{{selectedValue}}</div>
+      <div class="well well-sm">IrrecordData: {{fromBackend}}</div>
+    </div>
+  </div>
+</div>
