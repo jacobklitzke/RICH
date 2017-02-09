@@ -13,8 +13,20 @@ angular.module('addRemote', ["ngRoute"])
   .controller('addRemoteCtrl', function($scope, $http) {
   })
   .controller('mainCtrl', function ($scope, $http, $location) {
-    $http.get('addRemoteBackend/getFiles').success(function(data) {
+    $http.get('addRemoteBackend/getRemoteBrands').success(function(data) {
       $scope.files = data;
+      console.log(data);
+    });
+
+    $scope.brand = "a";
+    var data = {
+      brand: $scope.brand,
+      model: "a",
+      custom_name: "c"
+    };
+
+    $http.put('/addRemoteBackend/putNewRemote', JSON.stringify(data)).success(function(data) {
+      console.log(data);
     });
 
     $scope.go = function(path) {
