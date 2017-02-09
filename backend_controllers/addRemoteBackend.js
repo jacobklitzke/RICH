@@ -67,7 +67,14 @@ exports.putNewRemote = function(req, res) {
   function copyRemoteToLirc(brand, model) {
     //var fileData = fs.readFileSync("remotes/" + brand + "/" + model, 'utf8');
     //console.log(fileData);
-
-    fs.appendFile("/etc/lirc/lircd.conf", "include /home/pi/RICH/remotes/" + brand + "/" + model);
+    //TODO lineder checking for the same include filestatement
+    var lineder = require( "lineder" );
+    lineder( "/etc/lirc/lircd.conf" ).find( "include /home/pi/RICH/remotes/" + brand + "/" + model, function( err, results ) {
+      if(results.length !== 0) {
+        console.log("Found dupe!");
+        return;
+      }
+    });
+    fs.appendFile("/etc/lirc/lircd.conf", "include /home/pi/RICH/remotes/" + brand + "/" + model + "\n");
   }
 };
