@@ -22,7 +22,7 @@ angular.module('addRemote', ["ngRoute"])
     var data = {
       brand: $scope.brand,
       model: "a",
-      custom_name: "c"
+      custom_name: ""
     };
 
     $http.put('/addRemoteBackend/putNewRemote', JSON.stringify(data)).success(function(data) {

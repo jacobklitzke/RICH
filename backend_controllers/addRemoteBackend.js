@@ -33,16 +33,15 @@ exports.getRemoteFiles = function(req, res)
 };
 
 exports.putNewRemote = function(req, res) {
-  //TODO Create string containing brand, model, and custom name. The brand and model
-  //tell me where the file is located. The custom name field tells me to replace The
-  //name field in the file with the custom one. After both of these operation are completed
-  //the proper remote file in its entirety should be copied into the /etc/lircd.conf file.
-  //TODO Change file permissions on lirc file.
-  //TODO Use includes to add remote file to lirc.conf
+  //TODO Change file permissions on lirc file
+  var customName = "";
+  if(req.body.custom_name === "") {
+    customName = req.body.model;
+  }
   var duplicateCustomName = false;
   var remotes = JSON.parse(fs.readFileSync('user_files/added_remotes.json'));
   for (var i = 0; i < remotes.length; i++) {
-    if(remotes[i].custom_name == req.body.custom_name)
+    if(remotes[i].custom_name == customName)
     {
       duplicateCustomName = true;
       break;
@@ -56,7 +55,7 @@ exports.putNewRemote = function(req, res) {
     var remote = {
       brand: req.body.brand,
       model: req.body.model,
-      custom_name: req.body.custom_name
+      custom_name: customName
     };
     remotes.push(remote);
     var remotesJSON = JSON.stringify(remotes);
@@ -65,10 +64,8 @@ exports.putNewRemote = function(req, res) {
   }
 
   function copyRemoteToLirc(brand, model) {
-    //var fileData = fs.readFileSync("remotes/" + brand + "/" + model, 'utf8');
-    //console.log(fileData);
-    //TODO lineder checking for the same include filestatement
     var lineder = require( "lineder" );
+    //TODO Add quotation marks around path, but not around include.
     lineder( "/etc/lirc/lircd.conf" ).find( "include /home/pi/RICH/remotes/" + brand + "/" + model, function( err, results ) {
       if(results.length === 0) {
         fs.appendFile("/etc/lirc/lircd.conf", "include /home/pi/RICH/remotes/" + brand + "/" + model + "\n");
