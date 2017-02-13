@@ -10,6 +10,8 @@ app.use(express.static('files'));
 app.use(express.static('views'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+/* Add remote routes*/
 app.get('/addRemote', function (req, res) {
   require('./controllers/addRemote').get(req, res);
 });
@@ -25,6 +27,20 @@ app.get('/addRemoteBackend/getRemoteBrands', function (req, res) {
 app.put('/addRemoteBackend/putNewRemote', function (req, res) {
   require('./backend_controllers/addRemoteBackend').putNewRemote(req, res);
 });
+
+/* Record Remote routes*/
+app.get('recordRemoteBackend/startRecording', function(req, res) {
+  require('/backend_controllers/recordRemoteBackend').startRecording(req, res);
+});
+app.get('recordRemoteBackend/getRecordOutput', function(req, res) {
+  require('/backend_controllers/recordRemoteBackend').getRecordOutput(req, res);
+});
+app.post('recordRemoteBackend/postRecordData', function(req, res) {
+  require('/backend_controllers/recordRemoteBackend').postRecordData(req, res);
+});
+
+
+
 app.get('/Home', function (req, res) {
   require('./controllers/Home').get(req,res);
 });
