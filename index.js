@@ -41,6 +41,9 @@ app.get('recordRemoteBackend/getRecordOutput', function(req, res) {
 app.post('recordRemoteBackend/postRecordData', function(req, res) {
   require('/backend_controllers/recordRemoteBackend').postRecordData(req, res);
 });
+app.get('recordRemoteBackend/quitIRRecord', function(req, res) {
+  require('./backend_controllers/recordRemoteBackend').quitIRRecord(req, res);
+});
 
 
 app.get('/Home', function (req, res) {

@@ -70,3 +70,8 @@ exports.postRecordData = function(req, res) {
     res.send(getOutput());
   }
 };
+
+exports.quitIRRecord = function(req, res) {
+  irrecord.quit();
+  startLirc();
+};
