@@ -34,14 +34,14 @@ exports.getRemoteFiles = function(req, res)
 
 exports.putNewRemote = function(req, res) {
   //TODO Change file permissions on lirc file
-  var customName = "";
+  var customName = req.body.custom_name;
   if(req.body.custom_name === "") {
     customName = req.body.model;
   }
   var duplicateCustomName = false;
   var remotes = JSON.parse(fs.readFileSync('user_files/added_remotes.json'));
   for (var i = 0; i < remotes.length; i++) {
-    if(remotes[i].custom_name == customName)
+    if(remotes[i].custom_name === customName)
     {
       duplicateCustomName = true;
       break;
@@ -72,4 +72,18 @@ exports.putNewRemote = function(req, res) {
       }
     });
   }
+};
+
+exports.deleteRemote = function(req, res) {
+  console.log(req.query.custom_name);
+  var remotes = JSON.parse(fs.readFileSync('user_files/added_remotes.json'));
+  for (var i = 0; i < remotes.length; i++) {
+    if(remotes[i].custom_name === req.query.custom_name)
+    {
+      remotes.splice(i, 1);
+      break;
+    }
+  }
+  var remotesJSON = JSON.stringify(remotes);
+  fs.writeFileSync('user_files/added_remotes.json', remotesJSON);
 };

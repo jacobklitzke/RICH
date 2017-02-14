@@ -27,6 +27,9 @@ app.get('/addRemoteBackend/getRemoteBrands', function (req, res) {
 app.put('/addRemoteBackend/putNewRemote', function (req, res) {
   require('./backend_controllers/addRemoteBackend').putNewRemote(req, res);
 });
+app.delete('/addRemoteBackend/deleteRemote', function (req, res) {
+  require('./backend_controllers/addRemoteBackend').deleteRemote(req, res);
+});
 
 /* Record Remote routes*/
 app.get('recordRemoteBackend/startRecording', function(req, res) {
@@ -38,7 +41,6 @@ app.get('recordRemoteBackend/getRecordOutput', function(req, res) {
 app.post('recordRemoteBackend/postRecordData', function(req, res) {
   require('/backend_controllers/recordRemoteBackend').postRecordData(req, res);
 });
-
 
 
 app.get('/Home', function (req, res) {

@@ -22,12 +22,16 @@ angular.module('addRemote', ["ngRoute"])
     var data = {
       brand: $scope.brand,
       model: "a",
-      custom_name: ""
+      custom_name: "ab"
     };
 
-    $http.put('/addRemoteBackend/putNewRemote', JSON.stringify(data)).success(function(data) {
+    /*$http.put('/addRemoteBackend/putNewRemote', JSON.stringify(data)).success(function(data) {
       console.log(data);
-    });
+    });*/
+
+    /*$http.delete('addRemoteBackend/deleteRemote', {params:{custom_name: ""}}).success(function(data) {
+      console.log(data);
+    });*/
 
     $scope.go = function(path) {
       $location.path(path);
