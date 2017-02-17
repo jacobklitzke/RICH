@@ -33,6 +33,10 @@ angular.module('addRemote', ["ngRoute"])
       console.log(data);
     });*/
 
+    $http.get('editScriptsBackend/getScripts').success(function(data) {
+      console.log(data);
+    });
+
     $scope.go = function(path) {
       $location.path(path);
     };

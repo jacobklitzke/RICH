@@ -32,17 +32,29 @@ app.delete('/addRemoteBackend/deleteRemote', function (req, res) {
 });
 
 /* Record Remote routes*/
-app.get('recordRemoteBackend/startRecording', function(req, res) {
+app.get('/recordRemoteBackend/startRecording', function(req, res) {
   require('/backend_controllers/recordRemoteBackend').startRecording(req, res);
 });
-app.get('recordRemoteBackend/getRecordOutput', function(req, res) {
+app.get('/recordRemoteBackend/getRecordOutput', function(req, res) {
   require('/backend_controllers/recordRemoteBackend').getRecordOutput(req, res);
 });
-app.post('recordRemoteBackend/postRecordData', function(req, res) {
+app.post('/recordRemoteBackend/postRecordData', function(req, res) {
   require('/backend_controllers/recordRemoteBackend').postRecordData(req, res);
 });
-app.get('recordRemoteBackend/quitIRRecord', function(req, res) {
+app.get('/recordRemoteBackend/quitIRRecord', function(req, res) {
   require('./backend_controllers/recordRemoteBackend').quitIRRecord(req, res);
+});
+
+/* Script Editor */
+app.get('/editScriptsBackend/getScripts', function(req, res) {
+  console.log('hi');
+  require('./backend_controllers/editScriptsBackend').getScripts(req, res);
+});
+app.get('/editScriptsBackend/getScript', function(req, res) {
+  require('./backend_controllers/editScriptsBackend').getScript(req, res);
+});
+app.put('/editScriptsBackend/putNewScript', function(req, res) {
+  require('./backend_controllers/editScriptsBackend').putNewScript(req, res);
 });
 
 
