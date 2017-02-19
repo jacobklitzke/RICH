@@ -11,8 +11,9 @@ angular.module('recordRemote', [])
 
     var getData = function() {
        $http.get('recordRemoteBackend/getRecordOutput')
-       .then(function(res) {
-            $scope.output = res.data.args;
+       .success(function(data) {
+            console.log(data);
+            $scope.output = data;
              errorCount = 0;
              nextLoad();
        })
@@ -36,6 +37,9 @@ angular.module('recordRemote', [])
    getData();
     //Always clear the timeout when the view is destroyed, otherwise it will   keep polling
     $scope.$on('$destroy', function() {
+      http.get('recordRemoteBackend/quitIRRecord').success(function(data) {
+        console.log(data);
+      });
       cancelNextLoad();
     });
   });
