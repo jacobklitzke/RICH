@@ -1,10 +1,10 @@
 angular.module('recordRemote', [])
   .controller('recordRemoteCtrl', function($scope, $http, $timeout) {
-    $http.get('recordRemoteBackend/startIRRecord').success(function(data) {
+    $http.get('recordRemoteBackend/startRecording').success(function(data) {
       $scope.output = data;
       console.log(data);
     });
-
+    $scope.test = "hello";
     var loadTime = 1000; //Load the data every second
     var errorCount = 0; //Counter for the server errors
     var loadPromise; //Pointer to the promise created by the Angular $timout service

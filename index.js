@@ -36,13 +36,13 @@ app.get('/recordRemote', function (req, res) {
   require('./controllers/recordRemote').get(req, res);
 });
 app.get('/recordRemoteBackend/startRecording', function(req, res) {
-  require('/backend_controllers/recordRemoteBackend').startRecording(req, res);
+  require('./backend_controllers/recordRemoteBackend').startRecording(req, res);
 });
 app.get('/recordRemoteBackend/getRecordOutput', function(req, res) {
-  require('/backend_controllers/recordRemoteBackend').getRecordOutput(req, res);
+  require('./backend_controllers/recordRemoteBackend').getRecordOutput(req, res);
 });
 app.post('/recordRemoteBackend/postRecordData', function(req, res) {
-  require('/backend_controllers/recordRemoteBackend').postRecordData(req, res);
+  require('./backend_controllers/recordRemoteBackend').postRecordData(req, res);
 });
 app.get('/recordRemoteBackend/quitIRRecord', function(req, res) {
   require('./backend_controllers/recordRemoteBackend').quitIRRecord(req, res);
