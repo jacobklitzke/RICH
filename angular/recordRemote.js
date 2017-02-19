@@ -37,8 +37,10 @@ angular.module('recordRemote', [])
    getData();
 
    $scope.writeData = function() {
-     var button = "";
-     $http.post('recordRemoteBackend/postRecordData', button).success(function(data) {
+     var button = {
+       button: ""
+     };
+     $http.post('recordRemoteBackend/postRecordData', JSON.stringify(button)).success(function(data) {
        console.log(data);
      });
    };
