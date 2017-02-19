@@ -32,6 +32,9 @@ app.delete('/addRemoteBackend/deleteRemote', function (req, res) {
 });
 
 /* Record Remote routes*/
+app.get('/recordRemote', function (req, res) {
+  require('./controllers/recordRemote').get(req, res);
+});
 app.get('/recordRemoteBackend/startRecording', function(req, res) {
   require('/backend_controllers/recordRemoteBackend').startRecording(req, res);
 });

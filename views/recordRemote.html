@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html ng-app="recordRemote">
+
+  <head>
+    <link data-require="bootstrap@*" data-semver="4.0.5" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="recordRemote.js"></script>
+  </head>
+
+  <body>
+    <div>{{output}}</div>
+    <button class="btn btn-sm btn-primary" ng-click="updateHtml()" ng-show="buttonStep == 0">Enter</button>
+  </body>
+
+</html>
