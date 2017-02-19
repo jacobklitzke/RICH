@@ -35,6 +35,13 @@ angular.module('recordRemote', [])
        $timeout(getData, mill);
    };
    getData();
+
+   function writeData() {
+     var button = "";
+     http.post('recordRemoteBackend/postRecordData', button).success(function(data) {
+       console.log(data);
+     });
+   }
     //Always clear the timeout when the view is destroyed, otherwise it will   keep polling
     $scope.$on('$destroy', function() {
       http.get('recordRemoteBackend/quitIRRecord').success(function(data) {
