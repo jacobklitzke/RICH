@@ -3,7 +3,7 @@ var exec = require('child_process').exec;
 var output = "";
 
 var IRRecord = require('infrared').irrecord;
-var irrecord = new IRRecord();
+var irrecord = new IRRecord({device: '/dev/lirc0'});
 irrecord.on('stdout', function(data) {
   console.log(data);
   output = data;
