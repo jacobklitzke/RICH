@@ -45,10 +45,11 @@ exports.executeScript = function(req, res) {
 function sendScriptToLIRC(script) {
   var IRSend = require('infrared').irsend;
   var irsend = new IRSend();
+  var sleep = require('sleep');
   for(var i = 0; i < script.steps.length; i++) {
     if(script.steps[i].button === "wait") {
       //TODO Install sleep npm package
-      sleep(script.steps[i].count);
+      sleep.sleep(script.steps[i].count);
     }
     irsend.send_once_repeat(script.steps[i].remote, script.steps[i].button, script.steps[i].count);
   }
