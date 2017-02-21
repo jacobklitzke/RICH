@@ -57,6 +57,12 @@ app.delete('/editScriptsBackend/deleteScript', function(req, res) {
 app.get('/editScriptsBackend/executeScript', function(req, res) {
   require('./backend_controllers/editScriptsBackend').executeScript(req, res);
 });
+app.get('/editScriptsBackend/getRemotes', function(req, res) {
+  require('./backend_controllers/editScriptsBackend').getRemotes(req, res);
+});
+app.get('/editScriptsBackend/getRemoteButtons', function(req, res) {
+  require('./backend_controllers/editScriptsBackend').getRemoteButtons(req, res);
+});
 
 app.get('/Home', function (req, res) {
   require('./controllers/Home').get(req,res);

@@ -18,6 +18,7 @@ irrecord.on('exit', function() {
 });
 
 function startIRRecord(customName) {
+  //TODO You need to add a directory to the customName paramter so the file goes in the remotes/custom/<filename> directory.
   stopLirc();
   irrecord.start(customName, {disable_namespace: false});
   return getOutput();
@@ -59,11 +60,14 @@ exports.getRecordOutput = function(req, res) {
 };
 
 exports.postRecordData = function(req, res) {
+  //TODO Need to send the custom name paramter with this post request. 
   irrecord.write(req.body.button);
   if(req.body.button === "") {
     if(irrecord.recording === false) {
       startLirc();
       res.send("Remote successfully saved!");
+      //TODO Right here you need to add the custom name of the remote to the LIRC file. You also need to parse the newly created
+      //file and put the buttons in the remote buttons json file.
     }
     else {
       res.send(getOutput());
