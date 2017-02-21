@@ -1,5 +1,6 @@
 var path = require('path');
 var fs = require('fs');
+//TODO Angela was here
 exports.get = function(req, res)
 {
   console.log(req.query.selected);
