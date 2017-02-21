@@ -1,1 +1,1 @@
-[{"brand":"a","model":"a","custom_name":"c"}]
+[{"brand":"a","model":"a","custom_name":"a","buttons":[{"button":"KEY_POWER"},{"button":"KEY_BACK"},{"button":"KEY_MENU"},{"button":"KEY_LEFT"},{"button":"KEY_RIGHT"},{"button":"KEY_UP"},{"button":"KEY_DOWN"},{"button":"KEY_OK"},{"button":"KEY_F11"},{"button":"KEY_SEARCH"},{"button":"KEY_GREEN"},{"button":"KEY_BLUE"},{"button":"KEY_YELLOW"},{"button":"KEY_ORANGE"},{"button":"KEY_PURPLE"},{"button":"KEY_PLAY"},{"button":"KEY_VOLUMEUP"},{"button":"KEY_VOLUMEDOWN"},{"button":"KEY_HOME"}]}]

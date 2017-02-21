@@ -18,9 +18,9 @@ irrecord.on('exit', function() {
 });
 
 function startIRRecord(customName) {
-  //TODO You need to add a directory to the customName paramter so the file goes in the remotes/custom/<filename> directory.
+  //TODO Verify the file goes into the remotes/custom directory. You might need to use the entire path.
   stopLirc();
-  irrecord.start(customName, {disable_namespace: false});
+  irrecord.start('remotes/custom/' + customName, {disable_namespace: false});
   return getOutput();
 }
 
@@ -50,6 +50,71 @@ function startLirc() {
   });
 }
 
+function addRemoteToLIRC(custom_name) {
+  var lineder = require( "lineder" );
+  lineder( "/etc/lirc/lircd.conf" ).find( "include \"/home/pi/RICH/remotes/custom/" + custom_name + "\"", function( err, results ) {
+    if(results.length === 0) {
+      fs.appendFile("/etc/lirc/lircd.conf", "\"include /home/pi/RICH/remotes/custom/" + custom_name + "\"\n");
+    }
+  });
+}
+//TODO Update this function with all the changes from addRemoteBackend. 
+function addRemoteButtons(custom_name) {
+  var exec = require('child_process').exec;
+  var result;
+  var remote;
+  var counter = 0;
+
+  exec('grep -oh \"KEY_\\w*\" remotes/custom' + custom_name, function(err, out, code) {
+    if(out.length > 1) {
+      out = out.split("\n");
+      createRemote(out, custom_name);
+    }
+  });
+
+  exec('grep -oh \"BTN_\\w*\" remotes/custom' + custom_name, function(err, out, code) {
+    if(out.length > 1) {
+      out = out.split("\n");
+      createRemote(out, custom_name);
+    }
+  });
+
+  function createRemote(out, custom_name)
+  {
+    counter++;
+    if(counter === 1) {
+      result = out;
+    }
+    if(counter === 2) {
+      result = result.concat(out);
+      result.splice(-2, 2);
+      result.unshift("WAIT");
+
+      remote = {
+        brand: "custom",
+        model: "custom",
+        custom_name: custom_name,
+        buttons: result
+      };
+      counter = 0;
+      addRemoteTOJSON(remote);
+    }
+  }
+}
+
+function addRemoteToJSON(remote) {
+  var remotes = JSON.parse(fs.readFileSync('user_files/added_remotes.json'));
+  for (var i = 0; i < remotes.length; i++) {
+    if(remotes[i].custom_name === remote.custom_name)
+    {
+      remotes.splice(i, 1);
+    }
+  }
+  remotes.push(remote);
+  var remotesJSON = JSON.stringify(remotes);
+  fs.writeFileSync('user_files/added_remotes.json', remotesJSON);
+}
+
 
 exports.startRecording = function(req, res) {
   res.send(startIRRecord(req.query.custom_name));
@@ -60,14 +125,14 @@ exports.getRecordOutput = function(req, res) {
 };
 
 exports.postRecordData = function(req, res) {
-  //TODO Need to send the custom name paramter with this post request. 
+  //TODO Need to send the custom name paramter with this post request.
   irrecord.write(req.body.button);
   if(req.body.button === "") {
     if(irrecord.recording === false) {
       startLirc();
+      addRemoteToLIRC(req.query.custom_name);
+      addRemoteButtons(req.query.custom_name);
       res.send("Remote successfully saved!");
-      //TODO Right here you need to add the custom name of the remote to the LIRC file. You also need to parse the newly created
-      //file and put the buttons in the remote buttons json file.
     }
     else {
       res.send(getOutput());

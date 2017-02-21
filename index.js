@@ -14,6 +14,9 @@ app.use(bodyParser.json());
 app.get('/addRemote', function (req, res) {
   require('./controllers/addRemote').get(req, res);
 });
+app.get('/addRemoteBackend/', function (req, res) {
+  require('./backend_controllers/addRemoteBackend').get(req, res);
+});
 app.get('/addRemoteBackend/getRemoteFiles', function (req, res) {
   require('./backend_controllers/addRemoteBackend').getRemoteFiles(req, res);
 });

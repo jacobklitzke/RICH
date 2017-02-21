@@ -2,13 +2,8 @@ var path = require('path');
 var fs = require('fs');
 
 exports.getRemotes = function (req, res) {
-
-};
-
-exports.getRemoteButtons = function(req, res) {
-  //TODO Add a function in addremote which will parse remote file and add buttons to a remote buttons json file. This json
-  //file should contain the custom name of the remote, and the relevant buttons. After a remote has been included in the lirc
-  //file, the buttons from the file should be parsed and added to the remote buttons json file. 
+  var jsonFile = require('../user_files/added_remotes.json');
+  res.json(jsonFile);
 };
 
 exports.getScripts = function (req, res) {
