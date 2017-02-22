@@ -50,63 +50,67 @@ function startLirc() {
   });
 }
 
-function addRemoteToLIRC(custom_name) {
-  var lineder = require( "lineder" );
-  lineder( "/etc/lirc/lircd.conf" ).find( "include \"/home/pi/RICH/remotes/custom/" + custom_name + "\"", function( err, results ) {
-    if(results.length === 0) {
-      fs.appendFile("/etc/lirc/lircd.conf", "\"include /home/pi/RICH/remotes/custom/" + custom_name + "\"\n");
-    }
-  });
-}
-//TODO Update this function with all the changes from addRemoteBackend. 
 function addRemoteButtons(custom_name) {
   var exec = require('child_process').exec;
   var result;
   var remote;
   var counter = 0;
-
-  exec('grep -oh \"KEY_\\w*\" remotes/custom' + custom_name, function(err, out, code) {
+  exec('grep -oh \"KEY_\\w*\" remotes/custom/' + custom_name, function(err, out, code) {
     if(out.length > 1) {
       out = out.split("\n");
-      createRemote(out, custom_name);
     }
+    else {
+      out = [''];
+    }
+    createRemote(out, custom_name);
   });
 
-  exec('grep -oh \"BTN_\\w*\" remotes/custom' + custom_name, function(err, out, code) {
+  exec('grep -oh \"BTN_\\w*\" remotes/custom/' + custom_name, function(err, out, code) {
     if(out.length > 1) {
       out = out.split("\n");
-      createRemote(out, custom_name);
     }
+    else {
+      out = [''];
+    }
+    createRemote(out, custom_name);
   });
 
   function createRemote(out, custom_name)
   {
+    var buttons = [];
     counter++;
     if(counter === 1) {
       result = out;
     }
     if(counter === 2) {
       result = result.concat(out);
-      result.splice(-2, 2);
+      for(var i = 0; i < result.length; i++) {
+        if(result[i] === '') {
+          result.splice(i, 1);
+          i--;
+        }
+        else {
+          buttons.push({"button":result[i]});
+        }
+      }
       result.unshift("WAIT");
 
       remote = {
         brand: "custom",
         model: "custom",
         custom_name: custom_name,
-        buttons: result
+        buttons: buttons
       };
       counter = 0;
-      addRemoteTOJSON(remote);
+      addRemoteToJSON(remote);
     }
   }
 }
 
 function addRemoteToJSON(remote) {
   var remotes = JSON.parse(fs.readFileSync('user_files/added_remotes.json'));
-  for (var i = 0; i < remotes.length; i++) {
-    if(remotes[i].custom_name === remote.custom_name)
-    {
+  for(var i = 0; i < remotes.length; i++) {
+    if(remotes.custom_name === remote.custom_name) {
       remotes.splice(i, 1);
     }
   }
@@ -115,6 +119,14 @@ function addRemoteToJSON(remote) {
   fs.writeFileSync('user_files/added_remotes.json', remotesJSON);
 }
 
+function addRemoteToLirc(custom_name) {
+  var lineder = require( "lineder" );
+  lineder( "/etc/lirc/lircd.conf" ).find( "include \"/home/pi/RICH/remotes/custom/" + custom_name + "\"", function( err, results ) {
+    if(results.length === 0) {
+      fs.appendFile("/etc/lirc/lircd.conf", "include \"/home/pi/RICH/remotes/custom/" + custom_name + "\"\n");
+    }
+  });
+}
 
 exports.startRecording = function(req, res) {
   res.send(startIRRecord(req.query.custom_name));

@@ -100,7 +100,6 @@ exports.getRemoteFiles = function(req, res)
 
 exports.putNewRemote = function(req, res) {
   //TODO Change file permissions on lirc file
-  //TODO parse remote file for buttons. Add array of button objects to added_remotes.json.
   var customName = req.body.custom_name;
   console.log(customName);
   if(req.body.custom_name === "") {
@@ -113,7 +112,7 @@ exports.putNewRemote = function(req, res) {
       remotes.splice(i, 1);
     }
   }
-  //copyRemoteToLirc(req.body.brand, req.body.model);
+  copyRemoteToLirc(req.body.brand, req.body.model);
   addRemoteButtons(remotes, req.body.brand, req.body.model, customName);
 
   function copyRemoteToLirc(brand, model) {
