@@ -25,9 +25,9 @@ angular.module('addRemote', ["ngRoute"])
       custom_name: "a"
     };
 
-    $http.put('/addRemoteBackend/putNewRemote', JSON.stringify(data)).success(function(data) {
+    /*$http.put('/addRemoteBackend/putNewRemote', JSON.stringify(data)).success(function(data) {
       console.log(data);
-    });
+    });*/
 
     /*$http.delete('addRemoteBackend/deleteRemote', {params:{custom_name: ""}}).success(function(data) {
       console.log(data);

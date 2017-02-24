@@ -78,9 +78,10 @@ exports.getRemoteBrands = function(req, res)
   fs.readdir('remotes', function(err, files) {
     for(var i = 0; i < files.length; i++) {
       fileArr.push({
-        fileName: files[i]
+        brandName: files[i]
       });
     }
+    console.log(fileArr);
     res.json(fileArr);
   });
 };
@@ -91,7 +92,7 @@ exports.getRemoteFiles = function(req, res)
   fs.readdir('remotes/' + req.query.selectedBrand, function(err, files) {
     for(var i = 0; i < files.length; i++) {
       fileArr.push({
-        fileName: files[i]
+        modelName: files[i]
       });
     }
     res.json(fileArr);
