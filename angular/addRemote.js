@@ -22,7 +22,7 @@ angular.module('addRemote', ["ngRoute"])
     var data = {
       brand: $scope.brand,
       model: "a",
-      custom_name: "ab"
+      custom_name: "a"
     };
 
     /*$http.put('/addRemoteBackend/putNewRemote', JSON.stringify(data)).success(function(data) {
@@ -33,9 +33,32 @@ angular.module('addRemote', ["ngRoute"])
       console.log(data);
     });*/
 
-    $http.get('editScriptsBackend/getScripts').success(function(data) {
+    /*$http.get('editScriptsBackend/getScripts').success(function(data) {
       console.log(data);
-    });
+    });*/
+
+    var script = {
+      "name":"ab",
+        "steps": [
+          {
+            "remote":"e",
+            "button":"f",
+            "count":"1"
+          },
+          {
+            "remote":"g",
+            "button":"h",
+            "count":"1"
+          }
+        ]
+    };
+    /*$http.put('editScriptsBackend/putNewScript', JSON.stringify(script)).success(function(data) {
+      console.log(data);
+    });*/
+
+    /*$http.delete('editScriptsBackend/deleteScript', {params:{custom_name: "ab"}}).success(function(data) {
+      console.log(data);
+    });*/
 
     $scope.go = function(path) {
       $location.path(path);

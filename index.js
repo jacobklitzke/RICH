@@ -1,5 +1,4 @@
 var express = require('express');
-var IRRecord = require('infrared').irrecord;
 var exec = require('child_process').exec;
 var bodyParser = require("body-parser");
 var app = express();
@@ -15,7 +14,7 @@ app.use(bodyParser.json());
 app.get('/addRemote', function (req, res) {
   require('./controllers/addRemote').get(req, res);
 });
-app.get('/addRemoteBackend', function (req, res) {
+app.get('/addRemoteBackend/', function (req, res) {
   require('./backend_controllers/addRemoteBackend').get(req, res);
 });
 app.get('/addRemoteBackend/getRemoteFiles', function (req, res) {
@@ -50,16 +49,23 @@ app.get('/recordRemoteBackend/quitIRRecord', function(req, res) {
 
 /* Script Editor */
 app.get('/editScriptsBackend/getScripts', function(req, res) {
-  console.log('hi');
   require('./backend_controllers/editScriptsBackend').getScripts(req, res);
-});
-app.get('/editScriptsBackend/getScript', function(req, res) {
-  require('./backend_controllers/editScriptsBackend').getScript(req, res);
 });
 app.put('/editScriptsBackend/putNewScript', function(req, res) {
   require('./backend_controllers/editScriptsBackend').putNewScript(req, res);
 });
-
+app.delete('/editScriptsBackend/deleteScript', function(req, res) {
+  require('./backend_controllers/editScriptsBackend').deleteScript(req, res);
+});
+app.get('/editScriptsBackend/executeScript', function(req, res) {
+  require('./backend_controllers/editScriptsBackend').executeScript(req, res);
+});
+app.get('/editScriptsBackend/getRemotes', function(req, res) {
+  require('./backend_controllers/editScriptsBackend').getRemotes(req, res);
+});
+app.get('/editScriptsBackend/getRemoteButtons', function(req, res) {
+  require('./backend_controllers/editScriptsBackend').getRemoteButtons(req, res);
+});
 
 app.get('/Home', function (req, res) {
   require('./controllers/Home').get(req,res);
