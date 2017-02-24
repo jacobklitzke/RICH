@@ -17,10 +17,6 @@ irrecord.on('exit', function() {
   output = data;
 });
 
-setTimeout(function() {
-  irrecord.quit();
-}, 5000);
-
 function startIRRecord(customName) {
   stopLirc();
   irrecord.start(customName, {disable_namespace: false});
