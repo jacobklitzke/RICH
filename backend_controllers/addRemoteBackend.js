@@ -90,6 +90,7 @@ exports.getRemoteBrands = function(req, res) {
 // Parameters: Brand name
 // Returns: All remote names
 // Under directory remotes/ %Brand Name%/ it will return all remote files names
+//TODO 2/27 bugfix
 exports.getRemoteFiles = function(req, res) {
     var fileArr = [];
     fs.readdir('remotes/' + req.query.selectedBrand, function(err, files) {
@@ -104,7 +105,7 @@ exports.getRemoteFiles = function(req, res) {
 
 // Parameters: brand, model, custom_name, buttons
 // Returns: none
-//
+//TODO 2/27 bugfix -- "cannot read property length" - 128:24
 exports.putNewRemote = function(req, res) {
     //TODO Change file permissions on lirc file
     var customName = req.body.custom_name;
@@ -133,7 +134,7 @@ exports.putNewRemote = function(req, res) {
 
 // Parameters: custom_name
 // Returns: none
-//
+//TODO: 2/27 -- bugfix -- timesout
 exports.deleteRemote = function(req, res) {
     console.log(req.query.custom_name);
     var remotes = JSON.parse(fs.readFileSync('user_files/added_remotes.json'));

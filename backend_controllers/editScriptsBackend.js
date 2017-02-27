@@ -46,6 +46,7 @@ exports.deleteScript = function(req, res) {
 };
 
 // Parameters: name
+// Returns:
 // Finds the appoperiate script to execute and executes it
 exports.executeScript = function(req, res) {
     var custom_name = req.body.custom_name;
@@ -58,6 +59,16 @@ exports.executeScript = function(req, res) {
         }
     }
 };
+
+// Parameters: name
+// Returns:
+//
+exports.getRemoteButtons = function(req, res) {
+//TODO THIS
+res.json({"test":"test1"});
+
+};
+
 
 // Parameters: script
 // Returns:
