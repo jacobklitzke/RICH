@@ -1,3 +1,4 @@
+//TODO DELETE THIS
 angular.module('recordRemote', [])
   .controller('recordRemoteCtrl', function($scope, $http, $timeout) {
     $http.get('recordRemoteBackend/startRecording').success(function(data) {

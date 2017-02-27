@@ -1,3 +1,4 @@
+//TODO DELETE THIS
 angular.module('addRemote', ["ngRoute"])
   .config(function($routeProvider) {
     $routeProvider
