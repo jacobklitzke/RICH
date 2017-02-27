@@ -1,1 +1,26 @@
-[{"name":"a","steps":[{"remote":"e","button":"f","count":"1"},{"remote":"g","button":"h","count":"1"}]}]
+[{
+        "name": "a",
+        "steps": [{
+            "remote": "e",
+            "button": "f",
+            "count": "1"
+        }, {
+            "remote": "g",
+            "button": "h",
+            "count": "1"
+        }]
+    },
+    {
+            "name": "Script2",
+            "steps": [{
+                "remote": "e",
+                "button": "f",
+                "count": "1"
+            }, {
+                "remote": "g",
+                "button": "h",
+                "count": "1"
+            }]
+        }
+
+]

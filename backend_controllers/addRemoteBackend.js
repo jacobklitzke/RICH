@@ -1,6 +1,7 @@
 var path = require('path');
 var fs = require('fs');
 
+
 function addRemoteButtons(remotes, brand, model, custom_name) {
   var exec = require('child_process').exec;
   var result;
@@ -64,6 +65,7 @@ function addRemoteButtons(remotes, brand, model, custom_name) {
   }
 }
 
+//test?
 exports.get = function(req, res)
 {
   //console.log(req.query.selected);
@@ -72,6 +74,8 @@ exports.get = function(req, res)
 
 };
 
+//parameters: none
+//returns all RemoteBrands which are
 exports.getRemoteBrands = function(req, res)
 {
   var fileArr = [];

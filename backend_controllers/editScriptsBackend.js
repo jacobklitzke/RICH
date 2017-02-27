@@ -1,16 +1,22 @@
 var path = require('path');
 var fs = require('fs');
 
+// Parameters: none
+// This returns all remotes in added_remotes.json
 exports.getRemotes = function (req, res) {
   var jsonFile = require('../user_files/added_remotes.json');
   res.json(jsonFile);
 };
 
+// Parameters: none
+//This returns all the scripts in scripts.json
 exports.getScripts = function (req, res) {
     var jsonFile = require('../user_files/scripts.json');
     res.json(jsonFile);
 };
 
+// Parameters: name, remote, button, count
+// This receives an json and saves it into scripts.json
 exports.putNewScript = function(req, res) {
   var custom_name = req.body.custom_name;
   var scripts = JSON.parse(fs.readFileSync('user_files/scripts.json'));
@@ -20,6 +26,8 @@ exports.putNewScript = function(req, res) {
   fs.writeFileSync('user_files/scripts.json', scriptsJSON);
 };
 
+// Parameters: name
+// Deletes the script object in the json file
 exports.deleteScript = function(req, res) {
   var custom_name = req.body.custom_name;
   var scripts = JSON.parse(fs.readFileSync('user_files/scripts.json'));
@@ -34,6 +42,8 @@ exports.deleteScript = function(req, res) {
   fs.writeFileSync('user_files/scripts.json', scriptsJSON);
 };
 
+// Parameters: name
+// Finds the appoperiate script to execute and executes it
 exports.executeScript = function(req, res) {
   var custom_name = req.body.custom_name;
   var scripts = JSON.parse(fs.readFileSync('user_files/scripts.json'));
@@ -47,6 +57,8 @@ exports.executeScript = function(req, res) {
   }
 };
 
+// Parameters: script
+// Executes script on the node
 function sendScriptToLIRC(script) {
   var IRSend = require('infrared').irsend;
   var irsend = new IRSend();
