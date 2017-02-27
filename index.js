@@ -1,7 +1,73 @@
 var express = require('express');
 var exec = require('child_process').exec;
 var bodyParser = require("body-parser");
+var ip = require('ip');
+var ssdp = require('@achingbrain/ssdp');
 var app = express();
+
+var bus = ssdp({
+  udn: 'unique-identifier', // defaults to a random UUID
+  // a string to identify the server by
+  signature: 'RICH',
+  retry: {
+    times: 5, // how many times to attempt joining the UDP multicast group
+    interval: 5000 // how long to wait between attempts
+  },
+  // specify one or more sockets to listen on
+  sockets: [{
+    type: 'udp4', // or 'udp6'
+    broadcast: {
+      address: '239.255.255.250', // or 'FF02::C'
+      port: 1900 // SSDP broadcast port
+    },
+    bind: {
+      address: '0.0.0.0', // or '0:0:0:0:0:0:0:0'
+      port: 1900
+    },
+    maxHops: 4 // how many network segments packets are allow to travel through (UDP TTL)
+  }]
+});
+bus.on('error', console.error);
+
+bus.advertise({
+  usn: 'urn:schemas-upnp-org:service:ContentDirectory:1',
+  location: {
+    udp4: 'http://' + ip.address() + ':3000/details.xml'
+  },
+  /*details: { // the contents of the description document
+    specVersion: {
+      major: 1,
+      minor: 1
+    },
+    URLBase: 'http://' + ip.address() + ':3000',
+    device: {
+      deviceType: 'a-usn',
+      friendlyName: 'A friendly device name',
+      manufacturer: 'Manufactuer name',
+      manufacturerURL: 'http://example.com',
+      modelDescription: 'A description of the device',
+      modelName: 'A model name',
+      modelNumber: 'A vendor specific model number',
+      modelURL: 'http://example.com',
+      serialNumber: 'A device specific serial number',
+      UDN: 'unique-identifier', // should be the same as the bus UDN
+      presentationURL: 'index.html'
+    }
+  }*/
+});
+/*.then(advert => {
+  app.get('/details.xml', (request, response) => {
+    advert.service.details()
+    .then(details => {
+      response.set('Content-Type', 'text/xml');
+      response.send(details);
+    })
+    .catch(error => {
+      response.set('Content-Type', 'text/xml');
+      response.send(error);
+    });
+  });
+});*/
 
 app.use(express.static('angular'));
 app.use(express.static('backend_controllers'));
@@ -70,6 +136,7 @@ app.get('/editScriptsBackend/getRemoteButtons', function(req, res) {
 app.get('/Home', function (req, res) {
   require('./controllers/Home').get(req,res);
 });
+
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
