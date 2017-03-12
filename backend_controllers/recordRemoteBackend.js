@@ -142,8 +142,8 @@ exports.postRecordData = function(req, res) {
   if(req.body.button === "") {
     if(irrecord.recording === false) {
       startLirc();
-      addRemoteToLIRC(req.query.custom_name);
-      addRemoteButtons(req.query.custom_name);
+      addRemoteToLIRC(req.body.custom_name);
+      addRemoteButtons(req.body.custom_name);
       res.send("Remote successfully saved!");
     }
     else {
@@ -153,6 +153,10 @@ exports.postRecordData = function(req, res) {
   else {
     res.send(getOutput());
   }
+};
+
+exports.getRemoteButtons = function(req, res) {
+  res.json('user_files/remote_buttons.json');
 };
 
 exports.quitIRRecord = function(req, res) {
