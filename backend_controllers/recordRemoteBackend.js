@@ -1,6 +1,8 @@
 var path = require('path');
 var exec = require('child_process').exec;
+var fs = require('fs');
 var output = "";
+
 
 var IRRecord = require('infrared').irrecord;
 var irrecord = new IRRecord({
