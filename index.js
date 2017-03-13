@@ -3,6 +3,7 @@ var exec = require('child_process').exec;
 var bodyParser = require("body-parser");
 var ip = require('ip');
 var ssdp = require('@achingbrain/ssdp');
+var cors = require('cors');
 var app = express();
 
 var bus = ssdp({
@@ -75,6 +76,7 @@ app.use(express.static('files'));
 app.use(express.static('views'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 /* Add remote routes*/
 app.get('/addRemote', function (req, res) {
@@ -113,7 +115,7 @@ app.get('/recordRemoteBackend/quitIRRecord', function(req, res) {
   require('./backend_controllers/recordRemoteBackend').quitIRRecord(req, res);
 });
 app.get('/recordRemoteBackend/getRemoteButtons', function(req, res) {
-  require('./backend_controllers/getRemoteButtons').getRemoteButtons(req, res);
+  require('./backend_controllers/recordRemoteBackend').getRemoteButtons(req, res);
 });
 
 /* Script Editor */
