@@ -25,11 +25,11 @@ function startIRRecord(customName) {
     //TODO Verify the file goes into the remotes/custom directory. You might need to use the entire path.
     stopLirc();
     irrecord.start('remotes/custom/' + customName, {
-        disable_namespace: false,
-        force: true
+        disable_namespace: false
     });
-    irrecord.write("\n");
-    irrecord.write("\n");
+    
+    irrecord.write("");
+    irrecord.write("");
     return getOutput();
 }
 
