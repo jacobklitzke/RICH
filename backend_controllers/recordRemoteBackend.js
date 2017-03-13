@@ -17,7 +17,7 @@ irrecord.on('stderr', function(data) {
     output = data;
 });
 irrecord.on('exit', function() {
-    console.log(data);
+    irrecord.quit();
     output = data;
 });
 
@@ -27,6 +27,8 @@ function startIRRecord(customName) {
     irrecord.start('remotes/custom/' + customName, {
         disable_namespace: false
     });
+    irrecord.write("");
+    irrecord.write("");
     return getOutput();
 }
 
