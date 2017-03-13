@@ -17,7 +17,7 @@ irrecord.on('stderr', function(data) {
     output = data;
 });
 irrecord.on('exit', function() {
-    console.log(data);
+    irrecord.quit();
     output = data;
 });
 
@@ -25,8 +25,11 @@ function startIRRecord(customName) {
     //TODO Verify the file goes into the remotes/custom directory. You might need to use the entire path.
     stopLirc();
     irrecord.start('remotes/custom/' + customName, {
-        disable_namespace: false
+        disable_namespace: false,
+        force: true
     });
+    irrecord.write("\n");
+    irrecord.write("\n");
     return getOutput();
 }
 
