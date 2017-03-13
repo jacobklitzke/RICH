@@ -34,7 +34,7 @@ bus.advertise({
   location: {
     udp4: 'http://' + ip.address() + ':3000/details.xml'
   },
-  /*details: { // the contents of the description document
+  details: { // the contents of the description document
     specVersion: {
       major: 1,
       minor: 1
@@ -53,9 +53,9 @@ bus.advertise({
       UDN: 'unique-identifier', // should be the same as the bus UDN
       presentationURL: 'index.html'
     }
-  }*/
-});
-/*.then(advert => {
+  }
+})
+.then(advert => {
   app.get('/details.xml', (request, response) => {
     advert.service.details()
     .then(details => {
@@ -67,7 +67,7 @@ bus.advertise({
       response.send(error);
     });
   });
-});*/
+});
 
 app.use(express.static('angular'));
 app.use(express.static('backend_controllers'));
