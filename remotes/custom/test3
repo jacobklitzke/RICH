@@ -3,29 +3,29 @@
 # by sending it to <lirc@bartelmus.de>
 #
 # this config file was automatically generated
-# using lirc-0.9.0-pre1(default) on Sun Feb 19 23:56:10 2017
+# using lirc-0.9.0-pre1(default) on Mon Mar 13 03:13:22 2017
 #
 # contributed by 
 #
-# brand:                       remote
+# brand:                       remotes/custom/test3
 # model no. of remote control: 
 # devices being controlled by this remote:
 #
 
 begin remote
 
-  name  remote
+  name  remotes/custom/test3
   bits           32
   flags SPACE_ENC|CONST_LENGTH
   eps            30
   aeps          100
 
-  header       9004  4434
-  one           629  1612
-  zero          629   486
-  ptrail        624
-  repeat       8999  2232
-  gap          107458
+  header       8995  4440
+  one           626  1611
+  zero          626   490
+  ptrail        625
+  repeat       8995  2218
+  gap          107428
   toggle_bit_mask 0x0
 
       begin codes
