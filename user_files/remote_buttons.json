@@ -1,0 +1,352 @@
+[{
+        "button": "BTN_LEFT"
+    },
+    {
+        "button": "BTN_MODE"
+    },
+    {
+        "button": "BTN_RIGHT"
+    },
+    {
+        "button": "KEY_0"
+    },
+    {
+        "button": "KEY_1"
+    },
+    {
+        "button": "KEY_2"
+    },
+    {
+        "button": "KEY_3"
+    },
+    {
+        "button": "KEY_4"
+    },
+    {
+        "button": "KEY_5"
+    },
+    {
+        "button": "KEY_6"
+    },
+    {
+        "button": "KEY_7"
+    },
+    {
+        "button": "KEY_8"
+    },
+    {
+        "button": "KEY_9"
+    },
+    {
+        "button": "KEY_A"
+    },
+    {
+        "button": "KEY_AGAIN"
+    },
+    {
+        "button": "KEY_ANGLE"
+    },
+    {
+        "button": "KEY_AUDIO"
+    },
+    {
+        "button": "KEY_AUX"
+    },
+    {
+        "button": "KEY_B"
+    },
+    {
+        "button": "KEY_BACK"
+    },
+    {
+        "button": "KEY_BACKSPACE"
+    },
+    {
+        "button": "KEY_BLUE"
+    },
+    {
+        "button": "KEY_BOOKMARKS"
+    },
+    {
+        "button": "KEY_C"
+    },
+    {
+        "button": "KEY_CAMERA"
+    },
+    {
+        "button": "KEY_CANCEL"
+    },
+    {
+        "button": "KEY_CD"
+    },
+    {
+        "button": "KEY_CHANNELDOWN"
+    },
+    {
+        "button": "KEY_CHANNELUP"
+    },
+    {
+        "button": "KEY_CLEAR"
+    },
+    {
+        "button": "KEY_CLOSE"
+    },
+    {
+        "button": "KEY_CONFIG"
+    },
+    {
+        "button": "KEY_D"
+    },
+    {
+        "button": "KEY_DELETE"
+    },
+    {
+        "button": "KEY_DIRECTORY"
+    },
+    {
+        "button": "KEY_DOT"
+    },
+    {
+        "button": "KEY_DOWN"
+    },
+    {
+        "button": "KEY_DVD"
+    },
+    {
+        "button": "KEY_E"
+    },
+    {
+        "button": "KEY_EJECTCD"
+    },
+    {
+        "button": "KEY_END"
+    },
+    {
+        "button": "KEY_ENTER"
+    },
+    {
+        "button": "KEY_EPG"
+    },
+    {
+        "button": "KEY_ESC"
+    },
+    {
+        "button": "KEY_EXIT"
+    },
+    {
+        "button": "KEY_F"
+    },
+    {
+        "button": "KEY_F1"
+    },
+    {
+        "button": "KEY_F2"
+    },
+    {
+        "button": "KEY_F3"
+    },
+    {
+        "button": "KEY_F4"
+    },
+    {
+        "button": "KEY_FASTFORWARD"
+    },
+    {
+        "button": "KEY_FORWARD"
+    },
+    {
+        "button": "KEY_G"
+    },
+    {
+        "button": "KEY_GREEN"
+    },
+    {
+        "button": "KEY_H"
+    },
+    {
+        "button": "KEY_HELP"
+    },
+    {
+        "button": "KEY_HOME"
+    },
+    {
+        "button": "KEY_INFO"
+    },
+    {
+        "button": "KEY_KPASTERISK"
+    },
+    {
+        "button": "KEY_KPMINUS"
+    },
+    {
+        "button": "KEY_KPPLUS"
+    },
+    {
+        "button": "KEY_L"
+    },
+    {
+        "button": "KEY_LANGUAGE"
+    },
+    {
+        "button": "KEY_LEFT"
+    },
+    {
+        "button": "KEY_LIST"
+    },
+    {
+        "button": "KEY_M"
+    },
+    {
+        "button": "KEY_MAIL"
+    },
+    {
+        "button": "KEY_MAX"
+    },
+    {
+        "button": "KEY_MEDIA"
+    },
+    {
+        "button": "KEY_MENU"
+    },
+    {
+        "button": "KEY_MODE"
+    },
+    {
+        "button": "KEY_MP3"
+    },
+    {
+        "button": "KEY_MUTE"
+    },
+    {
+        "button": "KEY_NEXT"
+    },
+    {
+        "button": "KEY_OK"
+    },
+    {
+        "button": "KEY_OPEN"
+    },
+    {
+        "button": "KEY_OPTION"
+    },
+    {
+        "button": "KEY_PAGEDOWN"
+    },
+    {
+        "button": "KEY_PAGEUP"
+    },
+    {
+        "button": "KEY_PAUSE"
+    },
+    {
+        "button": "KEY_PC"
+    },
+    {
+        "button": "KEY_PHONE"
+    },
+    {
+        "button": "KEY_PLAY"
+    },
+    {
+        "button": "KEY_PLAYPAUSE"
+    },
+    {
+        "button": "KEY_PLUS"
+    },
+    {
+        "button": "KEY_POWER"
+    },
+    {
+        "button": "KEY_PREVIOUS"
+    },
+    {
+        "button": "KEY_R"
+    },
+    {
+        "button": "KEY_RADIO"
+    },
+    {
+        "button": "KEY_RECORD"
+    },
+    {
+        "button": "KEY_RED"
+    },
+    {
+        "button": "KEY_REWIND"
+    },
+    {
+        "button": "KEY_RIGHT"
+    },
+    {
+        "button": "KEY_S"
+    },
+    {
+        "button": "KEY_SELECT"
+    },
+    {
+        "button": "KEY_SETUP"
+    },
+    {
+        "button": "KEY_SLASH"
+    },
+    {
+        "button": "KEY_SLEEP"
+    },
+    {
+        "button": "KEY_SLOW"
+    },
+    {
+        "button": "KEY_SPACE"
+    },
+    {
+        "button": "KEY_STOP"
+    },
+    {
+        "button": "KEY_SUBTITLE"
+    },
+    {
+        "button": "KEY_T"
+    },
+    {
+        "button": "KEY_TAB"
+    },
+    {
+        "button": "KEY_TEXT"
+    },
+    {
+        "button": "KEY_TIME"
+    },
+    {
+        "button": "KEY_TITLE"
+    },
+    {
+        "button": "KEY_TV"
+    },
+    {
+        "button": "KEY_UNDO"
+    },
+    {
+        "button": "KEY_UP"
+    },
+    {
+        "button": "KEY_VCR"
+    },
+    {
+        "button": "KEY_VIDEO"
+    },
+    {
+        "button": "KEY_VOLUMEDOWN"
+    },
+    {
+        "button": "KEY_VOLUMEUP"
+    },
+    {
+        "button": "KEY_WWW"
+    },
+    {
+        "button": "KEY_YELLOW"
+    },
+    {
+        "button": "KEY_ZOOM"
+    }
+]
