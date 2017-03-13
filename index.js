@@ -113,7 +113,7 @@ app.get('/recordRemoteBackend/quitIRRecord', function(req, res) {
   require('./backend_controllers/recordRemoteBackend').quitIRRecord(req, res);
 });
 app.get('/recordRemoteBackend/getRemoteButtons', function(req, res) {
-  require('./backend_controllers/getRemoteButtons').getRemoteButtons(req, res);
+  require('./backend_controllers/recordRemoteBackend').getRemoteButtons(req, res);
 });
 
 /* Script Editor */
