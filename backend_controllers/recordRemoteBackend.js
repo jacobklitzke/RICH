@@ -153,7 +153,7 @@ exports.postRecordData = function(req, res) {
 
 exports.getRemoteButtons = function(req, res) {
     var buttons = JSON.parse(fs.readFileSync('user_files/remote_buttons.json'));
-    res.json('user_files/remote_buttons.json');
+    res.json(buttons);
 };
 
 exports.quitIRRecord = function(req, res) {
