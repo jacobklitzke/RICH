@@ -3,6 +3,7 @@ var exec = require('child_process').exec;
 var bodyParser = require("body-parser");
 var ip = require('ip');
 var ssdp = require('@achingbrain/ssdp');
+var cors = require('cors');
 var app = express();
 
 var bus = ssdp({
@@ -34,7 +35,7 @@ bus.advertise({
   location: {
     udp4: 'http://' + ip.address() + ':3000/details.xml'
   },
-  /*details: { // the contents of the description document
+  details: { // the contents of the description document
     specVersion: {
       major: 1,
       minor: 1
@@ -53,9 +54,9 @@ bus.advertise({
       UDN: 'unique-identifier', // should be the same as the bus UDN
       presentationURL: 'index.html'
     }
-  }*/
-});
-/*.then(advert => {
+  }
+})
+.then(advert => {
   app.get('/details.xml', (request, response) => {
     advert.service.details()
     .then(details => {
@@ -67,7 +68,7 @@ bus.advertise({
       response.send(error);
     });
   });
-});*/
+});
 
 app.use(express.static('angular'));
 app.use(express.static('backend_controllers'));
@@ -75,6 +76,7 @@ app.use(express.static('files'));
 app.use(express.static('views'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 /* Add remote routes*/
 app.get('/addRemote', function (req, res) {
