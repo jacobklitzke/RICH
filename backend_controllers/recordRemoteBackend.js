@@ -22,7 +22,6 @@ irrecord.on('stderr', function(data) {
     output = data;
 });
 irrecord.on('exit', function() {
-    irrecord.quit();
     console.log("Exited");
 });
 
