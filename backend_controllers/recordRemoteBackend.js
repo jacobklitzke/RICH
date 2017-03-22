@@ -2,7 +2,7 @@ var path = require('path');
 var exec = require('child_process').exec;
 var fs = require('fs');
 var output = "";
-
+var toggleReg = new RegExp("Checking for toggle bit mask*");
 
 var IRRecord = require('infrared').irrecord;
 var irrecord = new IRRecord({
@@ -10,6 +10,9 @@ var irrecord = new IRRecord({
 });
 irrecord.on('stdout', function(data) {
     console.log(data);
+    if(toggleReg.test(data)) {
+      irrecord.write("");
+    }
     output = data;
 });
 irrecord.on('stderr', function(data) {
@@ -27,7 +30,7 @@ function startIRRecord(customName) {
     irrecord.start('remotes/custom/' + customName, {
         disable_namespace: false
     });
-    
+
     irrecord.write("");
     irrecord.write("");
     return getOutput();
