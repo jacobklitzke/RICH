@@ -23,7 +23,7 @@ irrecord.on('stderr', function(data) {
 });
 irrecord.on('exit', function() {
     irrecord.quit();
-    output = data;
+    console.log("Exited");
 });
 
 function startIRRecord(customName) {
@@ -175,4 +175,5 @@ exports.getRemoteButtons = function(req, res) {
 exports.quitIRRecord = function(req, res) {
     irrecord.quit();
     startLirc();
+    res.send("Success");
 };
