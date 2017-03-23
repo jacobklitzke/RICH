@@ -162,6 +162,9 @@ exports.postRecordData = function(req, res) {
     irrecord.write(req.body.button);
     if (req.body.doneFlag === true) {
         startLirc();
+        exec('mv ' + req.body.custom_name + ' remotes/custom/', function(err, out, code) {
+
+        });
         addRemoteToLIRC(req.body.custom_name);
         addRemoteButtons(req.body.custom_name);
         res.send("Remote successfully saved!");
