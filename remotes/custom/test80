@@ -1,0 +1,37 @@
+
+# Please make this file available to others
+# by sending it to <lirc@bartelmus.de>
+#
+# this config file was automatically generated
+# using lirc-0.9.0-pre1(default) on Thu Mar 23 01:21:30 2017
+#
+# contributed by 
+#
+# brand:                       remotes/custom/test80
+# model no. of remote control: 
+# devices being controlled by this remote:
+#
+
+begin remote
+
+  name  remotes/custom/test80
+  bits           32
+  flags SPACE_ENC|CONST_LENGTH
+  eps            30
+  aeps          100
+
+  header       9013  4422
+  one           643  1594
+  zero          643   473
+  ptrail        644
+  repeat       9013  2202
+  gap          107428
+  toggle_bit_mask 0x0
+
+      begin codes
+          BTN_LEFT                 0x4BB621DE
+      end codes
+
+end remote
+
+

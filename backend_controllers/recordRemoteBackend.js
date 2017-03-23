@@ -168,6 +168,6 @@ exports.getRemoteButtons = function(req, res) {
 
 exports.quitIRRecord = function(req, res) {
     irrecord.quit();
-    //startLirc();
+    startLirc();
     res.send("Success");
 };
