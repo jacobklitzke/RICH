@@ -31,9 +31,6 @@ function startIRRecord(customName) {
     });
     irrecord.write("");
     irrecord.write("");
-    if(irrecord.recording) {
-	console.log("True");
-    }
     return getOutput();
 }
 
