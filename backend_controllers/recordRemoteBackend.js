@@ -3,17 +3,24 @@ var exec = require('child_process').exec;
 var fs = require('fs');
 var output = "";
 var toggleReg = new RegExp("Checking for toggle bit mask*");
+var savedReg = new RegExp("Successfully written config file*");
 var toggleFlag = false;
+var savedFlag = false;
 
 var IRRecord = require('infrared').irrecord;
 
 function startIRRecord(customName) {
-    irrecord = new IRRecord({device: '/dev/lirc0'});
+    irrecord = new IRRecord({
+        device: '/dev/lirc0'
+    });
     irrecord.on('stdout', function(data) {
         console.log(data);
         if (toggleReg.test(data)) {
             irrecord.write("");
             toggleFlag = true;
+        }
+        if (savedReg.test(data)) {
+            savedFlag = true;
         }
         output = data;
     });
@@ -37,10 +44,12 @@ function getOutput() {
     if (toggleFlag) {
         toggleFlag = false;
         return "Checking for toggle bit mask";
+    } else if (savedFlag) {
+        savedFlag = false;
+        return "Successfully written config file*";
     } else {
         return output;
     }
-
 }
 
 function stopLirc() {
