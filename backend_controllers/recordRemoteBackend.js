@@ -8,6 +8,7 @@ var toggleFlag = false;
 var savedFlag = false;
 
 var IRRecord = require('infrared').irrecord;
+var irrecord;
 
 function startIRRecord(customName) {
     irrecord = new IRRecord({
@@ -179,7 +180,7 @@ exports.getRemoteButtons = function(req, res) {
 };
 
 exports.quitIRRecord = function(req, res) {
-    irrecord.quit();
     startLirc();
+    irrecord.quit();
     res.send("Success");
 };
