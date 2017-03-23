@@ -22,7 +22,7 @@ irrecord.on('stderr', function(data) {
     output = data;
 });
 irrecord.on('exit', function() {
-    console.log("Exited");
+
 });
 
 function startIRRecord(customName) {
@@ -140,7 +140,7 @@ function addRemoteToLIRC(custom_name) {
     var lineder = require("lineder");
     lineder("/etc/lirc/lircd.conf").find("include \"/home/pi/RICH/remotes/custom/" + custom_name + "\"", function(err, results) {
         if (results.length === 0) {
-            fs.appendFile("/etc/lirc/lircd.conf", "include \"/home/pi/RICH/remotes/custom/" + custom_name + "\"\n");
+            fs.appendFileSync("/etc/lirc/lircd.conf", "include \"/home/pi/RICH/remotes/custom/" + custom_name + "\"\n");
         }
     });
 }
