@@ -31,11 +31,11 @@ function startIRRecord(customName) {
     irrecord.start('remotes/custom/' + customName, {
         disable_namespace: false
     });
+    irrecord.write("");
+    irrecord.write("");
     if(irrecord.recording) {
-      console.log("True");
+	console.log("True");
     }
-    irrecord.write("");
-    irrecord.write("");
     return getOutput();
 }
 
@@ -174,6 +174,6 @@ exports.getRemoteButtons = function(req, res) {
 
 exports.quitIRRecord = function(req, res) {
     irrecord.quit();
-    startLirc();
+    //startLirc();
     res.send("Success");
 };
