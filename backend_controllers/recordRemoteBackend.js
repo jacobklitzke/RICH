@@ -32,7 +32,7 @@ function startIRRecord(customName) {
         output = "";
     });
     stopLirc();
-    irrecord.start('remotes/custom/' + customName, {
+    irrecord.start(customName, {
         disable_namespace: false
     });
     irrecord.write("");
@@ -46,7 +46,7 @@ function getOutput() {
         return "Checking for toggle bit mask";
     } else if (savedFlag) {
         savedFlag = false;
-        return "Successfully written config file*";
+        return "Successfully written config file!";
     } else {
         return output;
     }
