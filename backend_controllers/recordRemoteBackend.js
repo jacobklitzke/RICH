@@ -22,11 +22,11 @@ irrecord.on('stderr', function(data) {
     output = data;
 });
 irrecord.on('exit', function() {
-
+    output = "";
 });
 
 function startIRRecord(customName) {
-    //TODO Verify the file goes into the remotes/custom directory. You might need to use the entire path.
+  console.log("Here");
     stopLirc();
     irrecord.start('remotes/custom/' + customName, {
         disable_namespace: false
@@ -154,7 +154,6 @@ exports.getRecordOutput = function(req, res) {
 };
 
 exports.postRecordData = function(req, res) {
-    //TODO Need to send the custom name paramter with this post request.
     irrecord.write(req.body.button);
     if (req.body.doneFlag === true) {
         startLirc();
