@@ -8,6 +8,7 @@ var toggleFlag = false;
 var savedFlag = false;
 
 var IRRecord = require('infrared').irrecord;
+var irrecord;
 
 function startIRRecord(customName) {
     irrecord = new IRRecord({
@@ -32,7 +33,7 @@ function startIRRecord(customName) {
         output = "";
     });
     stopLirc();
-    irrecord.start('remotes/custom/' + customName, {
+    irrecord.start(customName, {
         disable_namespace: false
     });
     irrecord.write("");
@@ -46,7 +47,7 @@ function getOutput() {
         return "Checking for toggle bit mask";
     } else if (savedFlag) {
         savedFlag = false;
-        return "Successfully written config file*";
+        return "Successfully written config file!";
     } else {
         return output;
     }
@@ -179,7 +180,7 @@ exports.getRemoteButtons = function(req, res) {
 };
 
 exports.quitIRRecord = function(req, res) {
-    irrecord.quit();
     startLirc();
+    irrecord.quit();
     res.send("Success");
 };
