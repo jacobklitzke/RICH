@@ -6,25 +6,24 @@ var toggleReg = new RegExp("Checking for toggle bit mask*");
 var toggleFlag = false;
 
 var IRRecord = require('infrared').irrecord;
-var irrecord;
-irrecord.on('stdout', function(data) {
-    console.log(data);
-    if (toggleReg.test(data)) {
-        irrecord.write("");
-        toggleFlag = true;
-    }
-    output = data;
-});
-irrecord.on('stderr', function(data) {
-    console.log(data);
-    output = data;
-});
-irrecord.on('exit', function() {
-    output = "";
-});
 
 function startIRRecord(customName) {
     irrecord = new IRRecord({device: '/dev/lirc0'});
+    irrecord.on('stdout', function(data) {
+        console.log(data);
+        if (toggleReg.test(data)) {
+            irrecord.write("");
+            toggleFlag = true;
+        }
+        output = data;
+    });
+    irrecord.on('stderr', function(data) {
+        console.log(data);
+        output = data;
+    });
+    irrecord.on('exit', function() {
+        output = "";
+    });
     stopLirc();
     irrecord.start('remotes/custom/' + customName, {
         disable_namespace: false
