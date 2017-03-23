@@ -6,9 +6,7 @@ var toggleReg = new RegExp("Checking for toggle bit mask*");
 var toggleFlag = false;
 
 var IRRecord = require('infrared').irrecord;
-var irrecord = new IRRecord({
-    device: '/dev/lirc0'
-});
+var irrecord;
 irrecord.on('stdout', function(data) {
     console.log(data);
     if (toggleReg.test(data)) {
@@ -26,14 +24,11 @@ irrecord.on('exit', function() {
 });
 
 function startIRRecord(customName) {
-  console.log("Here");
+    irrecord = new IRRecord({device: '/dev/lirc0'});
     stopLirc();
     irrecord.start('remotes/custom/' + customName, {
         disable_namespace: false
     });
-    if(irrecord.recording) {
-      console.log("True");
-    }
     irrecord.write("");
     irrecord.write("");
     return getOutput();
