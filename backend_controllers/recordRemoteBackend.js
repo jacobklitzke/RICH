@@ -31,7 +31,9 @@ function startIRRecord(customName) {
     irrecord.start('remotes/custom/' + customName, {
         disable_namespace: false
     });
-
+    if(irrecord.recording) {
+      console.log("True");
+    }
     irrecord.write("");
     irrecord.write("");
     return getOutput();
