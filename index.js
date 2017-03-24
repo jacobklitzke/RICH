@@ -137,6 +137,15 @@ app.get('/editScriptsBackend/getRemotes', function(req, res) {
 app.get('/editScriptsBackend/getRemoteButtons', function(req, res) {
   require('./backend_controllers/editScriptsBackend').getRemoteButtons(req, res);
 });
+app.put('/editScriptsBackend/updateExistingScript', function(req, res) {
+  require('./backend_controllers/editScriptsBackend').updateExistingScript(req, res);
+});
+app.put('/editScriptsBackend/updateScriptName', function(req, res) {
+  require('./backend_controllers/editScriptsBackend').updateScriptName(req, res);
+});
+app.put('/editScriptsBackend/executeSingleButton', function(req, res) {
+  require('./backend_controllers/editScriptsBackend').executeSingleButton(req, res);
+});
 
 app.get('/Home', function (req, res) {
   require('./controllers/Home').get(req,res);

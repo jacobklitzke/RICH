@@ -2,6 +2,9 @@
         "button": ""
     },
     {
+        "button": "WAIT"
+    },
+    {
         "button": "BTN_LEFT"
     },
     {
