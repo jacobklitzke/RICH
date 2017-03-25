@@ -12,19 +12,34 @@ exports.getScripts = function (req, res) {
 };
 
 exports.putNewScript = function(req, res) {
-  var custom_name = req.body.custom_name;
   var scripts = JSON.parse(fs.readFileSync('user_files/scripts.json'));
   var script = req.body;
   scripts.push(script);
   var scriptsJSON = JSON.stringify(scripts);
   fs.writeFileSync('user_files/scripts.json', scriptsJSON);
+  res.send("Success");
+};
+
+exports.updateExistingScript = function(req, res) {
+  var scripts = JSON.parse(fs.readFileSync('user_files/scripts.json'));
+  var script = req.body;
+
+  for(var i = 0; i < scripts.length; i++) {
+    if(scripts[i].name === script.name) {
+      scripts[i] = script;
+    }
+  }
+
+  var scriptsJSON = JSON.stringify(scripts);
+  fs.writeFileSync('user_files/scripts.json', scriptsJSON);
+  res.send("Success");
 };
 
 exports.deleteScript = function(req, res) {
   var custom_name = req.body.custom_name;
   var scripts = JSON.parse(fs.readFileSync('user_files/scripts.json'));
   for (var i = 0; i < scripts.length; i++) {
-    if(scripts[i].name === req.query.custom_name)
+    if(scripts[i].name === req.body.custom_name)
     {
       scripts.splice(i, 1);
       break;
@@ -32,19 +47,41 @@ exports.deleteScript = function(req, res) {
   }
   var scriptsJSON = JSON.stringify(scripts);
   fs.writeFileSync('user_files/scripts.json', scriptsJSON);
+  res.send("Success");
 };
 
 exports.executeScript = function(req, res) {
-  var custom_name = req.body.custom_name;
   var scripts = JSON.parse(fs.readFileSync('user_files/scripts.json'));
 
   for (var i = 0; i < scripts.length; i++) {
-    if(scripts[i].name === req.query.custom_name)
+    if(scripts[i].name === req.body.name)
     {
       sendScriptToLIRC(scripts[i]);
       break;
     }
   }
+  res.send("Success");
+};
+
+exports.executeSingleButton = function(req, res) {
+  sendScriptToLIRC(req.body);
+  res.send("Success");
+};
+
+exports.updateScriptName = function(req, res) {
+  var newName = req.body.newName;
+  var oldName = req.body.oldName;
+  var scripts = JSON.parse(fs.readFileSync('user_files/scripts.json'));
+
+  for(var i = 0; i < scripts.length; i++) {
+    if(scripts[i].name === oldName) {
+      scripts[i].name = newName;
+    }
+  }
+  var scriptsJSON = JSON.stringify(scripts);
+  fs.writeFileSync('user_files/scripts.json', scriptsJSON);
+
+  res.json(scripts);
 };
 
 function sendScriptToLIRC(script) {

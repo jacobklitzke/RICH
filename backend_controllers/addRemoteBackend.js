@@ -64,14 +64,6 @@ function addRemoteButtons(remotes, brand, model, custom_name) {
   }
 }
 
-exports.get = function(req, res)
-{
-  //console.log(req.query.selected);
-  res.send('Hello World!');
-  addRemoteButtons('a', 'a', 'a');
-
-};
-
 exports.getRemoteBrands = function(req, res)
 {
   var fileArr = [];
@@ -124,6 +116,7 @@ exports.putNewRemote = function(req, res) {
       }
     });
   }
+  res.send("Success!");
 };
 
 exports.deleteRemote = function(req, res) {
@@ -138,4 +131,5 @@ exports.deleteRemote = function(req, res) {
   }
   var remotesJSON = JSON.stringify(remotes);
   fs.writeFileSync('user_files/added_remotes.json', remotesJSON);
+  res.send("Success");
 };
