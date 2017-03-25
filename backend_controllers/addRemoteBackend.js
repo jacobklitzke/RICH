@@ -81,7 +81,8 @@ exports.getRemoteBrands = function(req, res)
 exports.getRemoteFiles = function(req, res)
 {
   var fileArr = [];
-  fs.readdir('remotes/' + req.query.selectedBrand, function(err, files) {
+  console.log(req.query.custom_name);
+  fs.readdir('remotes/' + req.query.custom_name + '/', function(err, files) {
     console.log(files);
     for(var i = 0; i < files.length; i++) {
       fileArr.push({
@@ -97,7 +98,7 @@ exports.putNewRemote = function(req, res) {
   var customName = req.body.custom_name;
   console.log(customName);
   if(req.body.custom_name === "") {
-    customName = req.body.model;
+    customName = req.body.model; 
   }
   var remotes = JSON.parse(fs.readFileSync('user_files/added_remotes.json'));
   for (var i = 0; i < remotes.length; i++) {

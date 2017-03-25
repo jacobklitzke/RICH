@@ -2,8 +2,7 @@ var path = require('path');
 var fs = require('fs');
 
 exports.getRemotes = function (req, res) {
-  var jsonFile = require('../user_files/added_remotes.json');
-  res.json(jsonFile);
+  res.json(JSON.parse(fs.readFileSync('user_files/added_remotes.json')));
 };
 
 exports.getScripts = function (req, res) {
