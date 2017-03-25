@@ -82,6 +82,7 @@ exports.getRemoteFiles = function(req, res)
 {
   var fileArr = [];
   fs.readdir('remotes/' + req.query.selectedBrand, function(err, files) {
+    console.log(files);
     for(var i = 0; i < files.length; i++) {
       fileArr.push({
         modelName: files[i]
