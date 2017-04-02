@@ -18,6 +18,7 @@ function startIRRecord(customName) {
     irrecord.on('stdout', function(data) {
         console.log(data);
         if(failedReg.test(data)) {
+          console.log("Here");
           irrecordTrigger();
         }
         if (toggleReg.test(data)) {
@@ -38,6 +39,7 @@ function startIRRecord(customName) {
     });
 
     function irrecordTrigger() {
+      console.log("Function!");
       irrecord.start(customName, {
           disable_namespace: false
       });
@@ -45,7 +47,6 @@ function startIRRecord(customName) {
       irrecord.write("");
       return getOutput();
     }
-
 
     stopLirc();
     irrecordTrigger();
