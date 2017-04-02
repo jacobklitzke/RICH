@@ -33,6 +33,7 @@ function startIRRecord(customName) {
         output = "";
     });
     stopLirc(function() {
+      console.log("Here");
       irrecord.start(customName, {
           disable_namespace: false
       });
@@ -62,6 +63,7 @@ function stopLirc(fn) {
         }
         console.log(stdout);
         console.log(stderr);
+        console.log("End");
         fn();
     });
 }
