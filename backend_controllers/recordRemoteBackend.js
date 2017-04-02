@@ -36,14 +36,13 @@ function startIRRecord(customName) {
 
     stopLirc(function() {
       sleep.sleep(3);
+      irrecord.start(customName, {
+          disable_namespace: false
+      });
+      irrecord.write("");
+      irrecord.write("");
     });
 
-    irrecord.start(customName, {
-        disable_namespace: false
-    });
-
-    irrecord.write("");
-    irrecord.write("");
     return getOutput();
 }
 
