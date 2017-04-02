@@ -64,7 +64,7 @@ function getOutput() {
     }
 }
 
-function stopLirc(fn) {
+function stopLirc() {
     exec('sudo systemctl stop lirc', function(error, stdout, stderr) {
         if (error) {
             console.log(error);
@@ -72,7 +72,6 @@ function stopLirc(fn) {
         }
         console.log(stdout);
         console.log(stderr);
-        fn();
     });
 }
 
