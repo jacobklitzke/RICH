@@ -1,0 +1,41 @@
+
+# Please make this file available to others
+# by sending it to <lirc@bartelmus.de>
+#
+# this config file was automatically generated
+# using lirc-0.9.0-pre1(default) on Sat Mar 25 21:40:47 2017
+#
+# contributed by 
+#
+# brand:                       LGTV
+# model no. of remote control: 
+# devices being controlled by this remote:
+#
+
+begin remote
+
+  name  LGTV
+  bits           16
+  flags SPACE_ENC|CONST_LENGTH
+  eps            30
+  aeps          100
+
+  header       9067  4466
+  one           585  1658
+  zero          585   538
+  ptrail        585
+  repeat       9071  2224
+  pre_data_bits   16
+  pre_data       0x20DF
+  gap          108020
+  toggle_bit_mask 0x0
+
+      begin codes
+          KEY_POWER                0x10EF
+          KEY_VOLUMEDOWN           0xC03F
+          KEY_VOLUMEUP             0x40BF
+      end codes
+
+end remote
+
+

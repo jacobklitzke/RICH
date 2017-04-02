@@ -1,0 +1,37 @@
+
+# Please make this file available to others
+# by sending it to <lirc@bartelmus.de>
+#
+# this config file was automatically generated
+# using lirc-0.9.0-pre1(default) on Thu Mar 23 02:57:52 2017
+#
+# contributed by 
+#
+# brand:                       test99
+# model no. of remote control: 
+# devices being controlled by this remote:
+#
+
+begin remote
+
+  name  test99
+  bits           32
+  flags SPACE_ENC|CONST_LENGTH
+  eps            30
+  aeps          100
+
+  header       9067  4464
+  one           584  1659
+  zero          584   538
+  ptrail        585
+  repeat       9070  2225
+  gap          108011
+  toggle_bit_mask 0x0
+
+      begin codes
+          BTN_LEFT                 0x20DFE01F
+      end codes
+
+end remote
+
+

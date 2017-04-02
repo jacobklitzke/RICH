@@ -1,0 +1,40 @@
+
+# Please make this file available to others
+# by sending it to <lirc@bartelmus.de>
+#
+# this config file was automatically generated
+# using lirc-0.9.0-pre1(default) on Wed Mar 22 21:44:24 2017
+#
+# contributed by 
+#
+# brand:                       remotes/custom/Test21
+# model no. of remote control: 
+# devices being controlled by this remote:
+#
+
+begin remote
+
+  name  remotes/custom/Test21
+  bits           24
+  flags SPACE_ENC|CONST_LENGTH
+  eps            30
+  aeps          100
+
+  header       8982  4453
+  one           613  1624
+  zero          613   503
+  ptrail        611
+  repeat       8982  2231
+  pre_data_bits   8
+  pre_data       0x4B
+  gap          107420
+  toggle_bit_mask 0x0
+
+      begin codes
+          BTN_LEFT                 0xB621DE
+          KEY_0                    0x407B84
+      end codes
+
+end remote
+
+
