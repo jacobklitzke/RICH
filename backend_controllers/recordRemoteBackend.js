@@ -32,13 +32,14 @@ function startIRRecord(customName) {
     irrecord.on('exit', function() {
         output = "";
     });
-    stopLirc();
-    irrecord.start(customName, {
-        disable_namespace: false
+    stopLirc(function() {
+      irrecord.start(customName, {
+          disable_namespace: false
+      });
+      irrecord.write("");
+      irrecord.write("");
+      return getOutput();
     });
-    irrecord.write("");
-    irrecord.write("");
-    return getOutput();
 }
 
 function getOutput() {
@@ -53,7 +54,7 @@ function getOutput() {
     }
 }
 
-function stopLirc() {
+function stopLirc(fn) {
     exec('sudo systemctl stop lirc', function(error, stdout, stderr) {
         if (error) {
             console.log(error);
@@ -61,6 +62,7 @@ function stopLirc() {
         }
         console.log(stdout);
         console.log(stderr);
+        fn();
     });
 }
 
