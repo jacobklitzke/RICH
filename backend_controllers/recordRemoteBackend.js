@@ -4,7 +4,7 @@ var fs = require('fs');
 var output = "";
 var toggleReg = new RegExp("Checking for toggle bit mask*");
 var savedReg = new RegExp("Successfully written config file*");
-var failedReg = new RegExp("irrecord: could not init hardware*");
+var failedReg = new RegExp("irrecord: could not open /dev/lirc0");
 var toggleFlag = false;
 var savedFlag = false;
 
