@@ -55,7 +55,7 @@ function getOutput() {
 }
 
 function stopLirc(fn) {
-    exec('sudo systemctl kill lirc', function(error, stdout, stderr) {
+    exec('sudo /etc/init.d/lirc stop', function(error, stdout, stderr) {
         if (error) {
             console.log(error);
             return;
@@ -67,7 +67,7 @@ function stopLirc(fn) {
 }
 
 function startLirc() {
-    exec('sudo systemctl start lirc', function(error, stdout, stderr) {
+    exec('sudo /etc/init.d/lirc start', function(error, stdout, stderr) {
         if (error) {
             console.log(error);
             return;
