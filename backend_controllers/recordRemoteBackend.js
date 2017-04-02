@@ -33,7 +33,6 @@ function startIRRecord(customName) {
         output = "";
     });
     stopLirc(function() {
-      console.log("Here");
       irrecord.start(customName, {
           disable_namespace: false
       });
@@ -56,14 +55,13 @@ function getOutput() {
 }
 
 function stopLirc(fn) {
-    exec('sudo systemctl stop lirc', function(error, stdout, stderr) {
+    exec('sudo systemctl kill lirc', function(error, stdout, stderr) {
         if (error) {
             console.log(error);
             return;
         }
         console.log(stdout);
         console.log(stderr);
-        console.log("End");
         fn();
     });
 }
