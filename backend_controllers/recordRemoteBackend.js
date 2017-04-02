@@ -4,6 +4,7 @@ var fs = require('fs');
 var output = "";
 var toggleReg = new RegExp("Checking for toggle bit mask*");
 var savedReg = new RegExp("Successfully written config file*");
+var failedReg = new RegExp("could not init hardware*");
 var toggleFlag = false;
 var savedFlag = false;
 
@@ -16,6 +17,9 @@ function startIRRecord(customName) {
     });
     irrecord.on('stdout', function(data) {
         console.log(data);
+        if(failedReg.test(data)) {
+          irrecordTrigger();
+        }
         if (toggleReg.test(data)) {
             irrecord.write("");
             toggleFlag = true;
@@ -32,14 +36,20 @@ function startIRRecord(customName) {
     irrecord.on('exit', function() {
         output = "";
     });
-    stopLirc(function() {
+
+    function irrecordTrigger() {
       irrecord.start(customName, {
           disable_namespace: false
       });
       irrecord.write("");
       irrecord.write("");
       return getOutput();
-    });
+    }
+
+
+    stopLirc();
+    irrecordTrigger();
+
 }
 
 function getOutput() {
@@ -55,7 +65,7 @@ function getOutput() {
 }
 
 function stopLirc(fn) {
-    exec('sudo /etc/init.d/lirc stop', function(error, stdout, stderr) {
+    exec('sudo systemctl stop lirc', function(error, stdout, stderr) {
         if (error) {
             console.log(error);
             return;
@@ -67,7 +77,7 @@ function stopLirc(fn) {
 }
 
 function startLirc() {
-    exec('sudo /etc/init.d/lirc start', function(error, stdout, stderr) {
+    exec('sudo systemctl restart lirc', function(error, stdout, stderr) {
         if (error) {
             console.log(error);
             return;
