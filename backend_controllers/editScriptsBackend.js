@@ -50,7 +50,8 @@ exports.deleteScript = function(req, res) {
 };
 
 exports.executeScript = function(req, res) {
-  sendScriptToLIRC(req.query.script);
+  console.log(req.query.script);
+  sendScriptToLIRC(JSON.parse(req.query.script));
   res.send("Success");
 };
 
