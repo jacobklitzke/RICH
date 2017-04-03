@@ -50,15 +50,7 @@ exports.deleteScript = function(req, res) {
 };
 
 exports.executeScript = function(req, res) {
-  var scripts = JSON.parse(fs.readFileSync('user_files/scripts.json'));
-
-  for (var i = 0; i < scripts.length; i++) {
-    if(scripts[i].name === req.body.name)
-    {
-      sendScriptToLIRC(scripts[i]);
-      break;
-    }
-  }
+  sendScriptToLIRC(req.query.script);
   res.send("Success");
 };
 
@@ -88,8 +80,7 @@ function sendScriptToLIRC(script) {
   var irsend = new IRSend();
   var sleep = require('sleep');
   for(var i = 0; i < script.steps.length; i++) {
-    if(script.steps[i].button === "wait") {
-      //TODO Install sleep npm package
+    if(script.steps[i].button === "WAIT") {
       sleep.sleep(script.steps[i].count);
     }
     irsend.send_once_repeat(script.steps[i].remote, script.steps[i].button, script.steps[i].count);
