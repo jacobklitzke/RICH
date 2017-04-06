@@ -81,9 +81,14 @@ function sendScriptToLIRC(script) {
   var irsend = new IRSend();
   var sleep = require('sleep');
   for(var i = 0; i < script.steps.length; i++) {
+    console.log(i);
     if(script.steps[i].button === "WAIT") {
+      console.log("Waiting for " + script.steps[i].count + " seconds...");
       sleep.sleep(script.steps[i].count);
+      console.log("Awake!");
     }
-    irsend.send_once_repeat(script.steps[i].remote, script.steps[i].button, script.steps[i].count);
+    else {
+      irsend.send_once_repeat(script.steps[i].remote, script.steps[i].button, script.steps[i].count);
+    }  
   }
 }
