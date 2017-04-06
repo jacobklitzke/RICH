@@ -1,1 +1,1 @@
-[{"name":"a","steps":[{"remote":"e","button":"f","count":"1"},{"remote":"g","button":"h","count":"1"}]}]
+[{"name":"a","steps":[{"remote":"e","button":"f","count":"1"},{"remote":"g","button":"h","count":"1"}]},{"name":"Test","steps":[{"remote":"LGTV","button":"KEY_POWER","count":1,"$$hashKey":"object:73"}]}]

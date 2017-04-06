@@ -89,16 +89,31 @@ function sendScriptToLIRC(script) {
       console.log(counter);
       if(script.steps[counter].button === "WAIT") {
         counter++;
-        console.log("Waiting for " + script.steps[counter].count + " seconds...");
+	console.log(script.steps[counter - 1].button + " " + script.steps[counter - 1].count);
+        console.log("Waiting for " + script.steps[counter - 1].count + " seconds...");
         setTimeout(execute, script.steps[counter - 1].count * 1000);
-        console.log("Awake!");
       }
       else {
-        irsend.send_once_repeat(script.steps[counter].remote, script.steps[counter].button, script.steps[counter].count);
-        counter++;
-        setTimeout(execute, 500);
+        sendCommand(script.steps[counter].remote, script.steps[counter].button, 0, function() {
+          counter++;
+          setTimeout(execute, 200);
+        });
       }
     }
+  }
+
+  function sendCommand(remote, button, sendThisManyTimes, fn) {
+    irsend.send_once(remote, button, function() {
+      sendThisManyTimes++;
+      if(script.steps[counter].count - sendThisManyTimes !== 0) {
+        setTimeout(function() {
+          sendCommand(remote, button, sendThisManyTimes, fn);
+        }, 100);
+      }
+      else {
+        fn();
+      }
+    });
   }
 
   /*for(var i = 0; i < script.steps.length; i++) {
