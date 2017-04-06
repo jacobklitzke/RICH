@@ -80,7 +80,28 @@ function sendScriptToLIRC(script) {
   var IRSend = require('infrared').irsend;
   var irsend = new IRSend();
   var sleep = require('sleep');
-  for(var i = 0; i < script.steps.length; i++) {
+
+  var counter = 0;
+  execute();
+
+  function execute() {
+    if(counter < script.steps.length) {
+      console.log(counter);
+      if(script.steps[counter].button === "WAIT") {
+        counter++;
+        console.log("Waiting for " + script.steps[i].count + " seconds...");
+        setTimeout(execute, script.steps[counter - 1].count * 1000);
+        console.log("Awake!");
+      }
+      else {
+        irsend.send_once_repeat(script.steps[counter].remote, script.steps[counter].button, script.steps[counter].count);
+        counter++;
+        setTimeout(execute, 500);
+      }
+    }
+  }
+
+  /*for(var i = 0; i < script.steps.length; i++) {
     console.log(i);
     if(script.steps[i].button === "WAIT") {
       console.log("Waiting for " + script.steps[i].count + " seconds...");
@@ -89,6 +110,6 @@ function sendScriptToLIRC(script) {
     }
     else {
       irsend.send_once_repeat(script.steps[i].remote, script.steps[i].button, script.steps[i].count);
-    }  
-  }
+    }
+  }*/
 }
