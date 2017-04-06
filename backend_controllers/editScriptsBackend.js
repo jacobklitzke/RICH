@@ -89,7 +89,7 @@ function sendScriptToLIRC(script) {
       console.log(counter);
       if(script.steps[counter].button === "WAIT") {
         counter++;
-        console.log("Waiting for " + script.steps[i].count + " seconds...");
+        console.log("Waiting for " + script.steps[counter].count + " seconds...");
         setTimeout(execute, script.steps[counter - 1].count * 1000);
         console.log("Awake!");
       }
