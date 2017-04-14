@@ -166,7 +166,12 @@ exports.getRecordOutput = function(req, res) {
 };
 
 exports.postRecordData = function(req, res) {
-    irrecord.write(req.body.button);
+    if(req.body.button === undefined) {
+	irrecord.write("");
+    }
+    else {
+	irrecord.write(req.body.button);
+    }
     if (req.body.doneFlag === true) {
         startLirc();
         exec('mv ' + req.body.custom_name + ' remotes/custom/', function(err, out, code) {
