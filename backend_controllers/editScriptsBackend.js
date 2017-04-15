@@ -78,11 +78,32 @@ exports.updateScriptName = function(req, res) {
 
 function sendScriptToLIRC(script) {
   var IRSend = require('infrared').irsend;
-  var irsend = new IRSend();
+  var exec = require('child_process').exec;
   var sleep = require('sleep');
-
+  var socketReg = new RegExp("irsend: Connection refused*");
+  var irsend = new IRSend();
   var counter = 0;
-  execute();
+
+  irsend.list("","",function(error, stdout, stderr) {
+	console.log(stderr);
+	if(socketReg.test(stderr)) {
+		console.log("Here");
+		exec('sudo systemctl restart lirc', function(error, stdout, stderr) {
+        		if (error) {
+            			console.log(error);
+            			return;
+        		}
+        		console.log(stdout);
+        		console.log(stderr);
+			sendScriptToLIRC(script);
+    		});
+	}
+	else {
+  		execute();
+	}
+ });
+  
+
 
   function execute() {
     if(counter < script.steps.length) {
