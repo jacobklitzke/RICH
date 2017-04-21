@@ -117,7 +117,7 @@ function sendScriptToLIRC(script) {
       else {
         sendCommand(script.steps[counter].remote, script.steps[counter].button, 0, function() {
           counter++;
-          setTimeout(execute, 200);
+          setTimeout(execute, 500);
         });
       }
     }

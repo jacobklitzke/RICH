@@ -1,0 +1,45 @@
+
+# Please make this file available to others
+# by sending it to <lirc@bartelmus.de>
+#
+# this config file was automatically generated
+# using lirc-0.9.0-pre1(default) on Fri Apr 21 20:35:37 2017
+#
+# contributed by 
+#
+# brand:                       Abc
+# model no. of remote control: 
+# devices being controlled by this remote:
+#
+
+begin remote
+
+  name  Abc
+  bits           16
+  flags SPACE_ENC|CONST_LENGTH|REPEAT_HEADER
+  eps            30
+  aeps          100
+
+  header       4547  4491
+  one           605  1656
+  zero          605   525
+  ptrail        599
+  repeat        596   541
+  pre_data_bits   16
+  pre_data       0x8181
+  gap          108567
+  toggle_bit_mask 0x0
+
+      begin codes
+          KEY_POWER                0x40BF
+          KEY_FASTFORWARD          0x58A7
+          KEY_REWIND               0x8877
+          KEY_0                    0x9867
+          KEY_1                    0x48B7
+          KEY_VOLUMEDOWN           0x906F
+          KEY_VOLUMEUP             0x807F
+      end codes
+
+end remote
+
+

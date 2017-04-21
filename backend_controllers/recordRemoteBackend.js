@@ -5,6 +5,9 @@ var sleep = require('sleep');
 var output = "";
 var toggleReg = new RegExp("Checking for toggle bit mask*");
 var savedReg = new RegExp("Successfully written config file*");
+var buttonReg = new RegExp("Please enter the name for the next button*");
+
+var buttonFlag = false;
 var toggleFlag = false;
 var savedFlag = false;
 
@@ -17,6 +20,9 @@ function startIRRecord(customName) {
     });
     irrecord.on('stdout', function(data) {
         console.log(data);
+	if (buttonReg.test(data)) {
+	    buttonFlag = true;
+	}
         if (toggleReg.test(data)) {
             irrecord.write("");
             toggleFlag = true;
@@ -53,6 +59,9 @@ function getOutput() {
     } else if (savedFlag) {
         savedFlag = false;
         return "Successfully written config file!";
+    } else if (buttonFlag) {
+	buttonFlag = false;
+	return "Please enter the name for the next button";
     } else {
         return output;
     }

@@ -1,0 +1,51 @@
+
+# Please make this file available to others
+# by sending it to <lirc@bartelmus.de>
+#
+# this config file was automatically generated
+# using lirc-0.9.0-pre1(default) on Fri Apr 21 21:11:20 2017
+#
+# contributed by 
+#
+# brand:                       Gerrick
+# model no. of remote control: 
+# devices being controlled by this remote:
+#
+
+begin remote
+
+  name  Gerrick
+  bits           16
+  flags SPACE_ENC|CONST_LENGTH
+  eps            30
+  aeps          100
+
+  header       9076  4461
+  one           618  1643
+  zero          618   516
+  ptrail        612
+  repeat       9075  2211
+  pre_data_bits   16
+  pre_data       0x20DF
+  gap          108224
+  toggle_bit_mask 0x0
+
+      begin codes
+          KEY_POWER                0x10EF
+          KEY_VOLUMEUP             0x40BF
+          KEY_VOLUMEDOWN           0xC03F
+          KEY_CHANNELUP            0x00FF
+          KEY_CHANNELDOWN          0x807F
+          KEY_OK                   0x22DD
+          KEY_MENU                 0xF20D
+          KEY_EXIT                 0x926D
+          KEY_BACK                 0x52AD
+          KEY_DOWN                 0x629D
+          KEY_LEFT                 0xE21D
+          KEY_RIGHT                0x12ED
+          KEY_UP                   0xA25D
+      end codes
+
+end remote
+
+
