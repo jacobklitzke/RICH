@@ -14,7 +14,7 @@
 
 begin remote
 
-  name  Abc
+  name  Boombox
   bits           16
   flags SPACE_ENC|CONST_LENGTH|REPEAT_HEADER
   eps            30
