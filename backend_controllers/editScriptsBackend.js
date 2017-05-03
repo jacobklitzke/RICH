@@ -89,14 +89,14 @@ function sendScriptToLIRC(script) {
       console.log(counter);
       if(script.steps[counter].button === "WAIT") {
         counter++;
-        console.log("Waiting for " + script.steps[counter].count + " seconds...");
+        console.log(script.steps[counter - 1].button + " " + script.steps[counter - 1].count);
+        console.log("Waiting for " + script.steps[counter - 1].count + " seconds...");
         setTimeout(execute, script.steps[counter - 1].count * 1000);
-        console.log("Awake!");
       }
       else {
         irsend.send_once_repeat(script.steps[counter].remote, script.steps[counter].button, script.steps[counter].count);
         counter++;
-        setTimeout(execute, 500);
+        setTimeout(execute, 1000);
       }
     }
   }
