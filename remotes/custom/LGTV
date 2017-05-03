@@ -3,7 +3,7 @@
 # by sending it to <lirc@bartelmus.de>
 #
 # this config file was automatically generated
-# using lirc-0.9.0-pre1(default) on Sat Mar 25 21:40:47 2017
+# using lirc-0.9.0-pre1(default) on Sun Apr  2 21:46:25 2017
 #
 # contributed by 
 #
@@ -15,25 +15,21 @@
 begin remote
 
   name  LGTV
-  bits           16
+  bits           32
   flags SPACE_ENC|CONST_LENGTH
   eps            30
   aeps          100
 
-  header       9067  4466
-  one           585  1658
-  zero          585   538
-  ptrail        585
-  repeat       9071  2224
-  pre_data_bits   16
-  pre_data       0x20DF
-  gap          108020
+  header       9065  4451
+  one           575  1666
+  zero          575   546
+  ptrail        575
+  repeat       9068  2214
+  gap          107920
   toggle_bit_mask 0x0
 
       begin codes
-          KEY_POWER                0x10EF
-          KEY_VOLUMEDOWN           0xC03F
-          KEY_VOLUMEUP             0x40BF
+          KEY_POWER                0x20DF10EF
       end codes
 
 end remote

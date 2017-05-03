@@ -5,6 +5,9 @@ var sleep = require('sleep');
 var output = "";
 var toggleReg = new RegExp("Checking for toggle bit mask*");
 var savedReg = new RegExp("Successfully written config file*");
+var buttonReg = new RegExp("Please enter the name for the next button*");
+
+var buttonFlag = false;
 var toggleFlag = false;
 var savedFlag = false;
 
@@ -17,6 +20,9 @@ function startIRRecord(customName) {
     });
     irrecord.on('stdout', function(data) {
         console.log(data);
+	if (buttonReg.test(data)) {
+	    buttonFlag = true;
+	}
         if (toggleReg.test(data)) {
             irrecord.write("");
             toggleFlag = true;
@@ -53,6 +59,9 @@ function getOutput() {
     } else if (savedFlag) {
         savedFlag = false;
         return "Successfully written config file!";
+    } else if (buttonFlag) {
+	buttonFlag = false;
+	return "Please enter the name for the next button";
     } else {
         return output;
     }
@@ -126,7 +135,7 @@ function addRemoteButtons(custom_name) {
 
             remote = {
                 brand: "custom",
-                model: "custom",
+                model: custom_name,
                 custom_name: custom_name,
                 buttons: buttons
             };
@@ -166,7 +175,12 @@ exports.getRecordOutput = function(req, res) {
 };
 
 exports.postRecordData = function(req, res) {
-    irrecord.write(req.body.button);
+    if(req.body.button === undefined) {
+	irrecord.write("");
+    }
+    else {
+	irrecord.write(req.body.button);
+    }
     if (req.body.doneFlag === true) {
         startLirc();
         exec('mv ' + req.body.custom_name + ' remotes/custom/', function(err, out, code) {
@@ -186,7 +200,7 @@ exports.getRemoteButtons = function(req, res) {
 };
 
 exports.quitIRRecord = function(req, res) {
-    startLirc();
     irrecord.quit();
+    startLirc();
     res.send("Success");
 };
